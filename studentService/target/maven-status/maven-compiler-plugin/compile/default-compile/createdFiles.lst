@@ -1,4 +1,7 @@
+studentService\Students.class
+studentService\testing.class
+studentService\StudentsInterface.class
+studentService\ModuleCode.class
+studentService\Module.class
 studentService\Student.class
 studentService\StudentsImpl.class
-studentService\Students.class
-studentService\StudentsInterface.class

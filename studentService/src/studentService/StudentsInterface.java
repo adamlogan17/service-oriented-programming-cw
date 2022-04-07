@@ -15,4 +15,9 @@ public interface StudentsInterface {
 	@WebMethod
 	public @WebResult(name = "loginCheckResult") boolean loginCheck( @WebParam(name = "loginCheckUsername") String username, @WebParam(name = "loginCheckPassword") String password );
 
+	@WebMethod
+	public @WebResult(name = "addStudentResult") Students addStudent(@WebParam(name = "addStudentId") int id, @WebParam(name = "addStudentAllStudents") Students allStudnets);
+	
+	@WebMethod
+	public @WebResult(name = "studentDetailsResult") String studentDetails(@WebParam(name = "allStudentsDetails") Students allStudents);
 }
