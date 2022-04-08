@@ -1,7 +1,10 @@
 
 package studentservice;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -21,6 +24,8 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _JAXBException_QNAME = new QName("http://studentService/", "JAXBException");
+    private final static QName _IOException_QNAME = new QName("http://studentService/", "IOException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: studentservice
@@ -30,11 +35,61 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Students }
+     * Create an instance of {@link JAXBException }
      * 
      */
-    public Students createStudents() {
-        return new Students();
+    public JAXBException createJAXBException() {
+        return new JAXBException();
+    }
+
+    /**
+     * Create an instance of {@link IOException }
+     * 
+     */
+    public IOException createIOException() {
+        return new IOException();
+    }
+
+    /**
+     * Create an instance of {@link StackTraceElement }
+     * 
+     */
+    public StackTraceElement createStackTraceElement() {
+        return new StackTraceElement();
+    }
+
+    /**
+     * Create an instance of {@link Throwable }
+     * 
+     */
+    public Throwable createThrowable() {
+        return new Throwable();
+    }
+
+    /**
+     * Create an instance of {@link Student }
+     * 
+     */
+    public Student createStudent() {
+        return new Student();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link JAXBException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://studentService/", name = "JAXBException")
+    public JAXBElement<JAXBException> createJAXBException(JAXBException value) {
+        return new JAXBElement<JAXBException>(_JAXBException_QNAME, JAXBException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IOException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://studentService/", name = "IOException")
+    public JAXBElement<IOException> createIOException(IOException value) {
+        return new JAXBElement<IOException>(_IOException_QNAME, IOException.class, null, value);
     }
 
 }

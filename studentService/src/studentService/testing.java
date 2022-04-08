@@ -1,5 +1,9 @@
 package studentService;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+
 public class testing {
 
 	public static void main(String[] args) {
@@ -7,9 +11,17 @@ public class testing {
 		
 		Students allStuds = new Students();
 		
-		x.addStudent(1, allStuds);
+		//x.addStudent(1, allStuds);
+		
+		//System.out.println(x.studentDetails(allStuds));
+		
+		try {
+			allStuds = x.addStudent2(new Student(1));
+		} catch (JAXBException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println(x.studentDetails(allStuds));
 	}
-
 }

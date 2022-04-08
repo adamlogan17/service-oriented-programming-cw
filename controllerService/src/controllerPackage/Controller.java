@@ -7,7 +7,9 @@ import javax.jws.WebService;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import studentservice.Students;
+import studentservice.IOException_Exception;
+import studentservice.JAXBException_Exception;
+import studentservice.Student;
 import studentservice.StudentsInterface;
 
 @WebService(endpointInterface="controllerPackage.ControllerInterface")
@@ -26,7 +28,7 @@ public class Controller implements ControllerInterface
 		return obj;
 	}
 	
-	public Students registration(int id, Students allStudents) {
+	public void registration(Role roleOfUser, int id) {
 		StudentsInterface obj = null;
 		try {
 			obj = connectService();
@@ -34,30 +36,19 @@ public class Controller implements ControllerInterface
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		allStudents = obj.addStudent(id, allStudents);
-		
-		System.out.println(obj.studentDetails(allStudents));
-		
-		return allStudents;
+		Student newStudent = new Student();
+		newStudent.setId(id);
+		try {
+			obj.addStudent(newStudent);
+		} catch (IOException_Exception | JAXBException_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public boolean loginCheck(String username, String password) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public String studentDetails(Students allStudents) {
-		StudentsInterface obj = null;
-		try {
-			obj = connectService();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		String details = obj.studentDetails(allStudents);
-		return details;
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 
 
 /**
@@ -26,6 +27,23 @@ public interface StudentsInterface {
 
     /**
      * 
+     * @param addStudentNewStudent
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://studentService/StudentsInterface/addStudentRequest", output = "http://studentService/StudentsInterface/addStudentResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/addStudent/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/addStudent/Fault/IOException")
+    })
+    public void addStudent(
+        @WebParam(name = "addStudentNewStudent", partName = "addStudentNewStudent")
+        Student addStudentNewStudent)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
      * @param loginCheckPassword
      * @param loginCheckUsername
      * @return
@@ -39,34 +57,5 @@ public interface StudentsInterface {
         String loginCheckUsername,
         @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
         String loginCheckPassword);
-
-    /**
-     * 
-     * @param addStudentId
-     * @param addStudentAllStudents
-     * @return
-     *     returns studentservice.Students
-     */
-    @WebMethod
-    @WebResult(name = "addStudentResult", partName = "addStudentResult")
-    @Action(input = "http://studentService/StudentsInterface/addStudentRequest", output = "http://studentService/StudentsInterface/addStudentResponse")
-    public Students addStudent(
-        @WebParam(name = "addStudentId", partName = "addStudentId")
-        int addStudentId,
-        @WebParam(name = "addStudentAllStudents", partName = "addStudentAllStudents")
-        Students addStudentAllStudents);
-
-    /**
-     * 
-     * @param allStudentsDetails
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(name = "studentDetailsResult", partName = "studentDetailsResult")
-    @Action(input = "http://studentService/StudentsInterface/studentDetailsRequest", output = "http://studentService/StudentsInterface/studentDetailsResponse")
-    public String studentDetails(
-        @WebParam(name = "allStudentsDetails", partName = "allStudentsDetails")
-        Students allStudentsDetails);
 
 }
