@@ -8,8 +8,6 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
-import studentservice.ObjectFactory;
-import studentservice.Students;
 
 
 /**
@@ -25,22 +23,6 @@ import studentservice.Students;
 })
 public interface ControllerInterface {
 
-
-    /**
-     * 
-     * @param addStudentId
-     * @param addStudentAllStudents
-     * @return
-     *     returns studentservice.Students
-     */
-    @WebMethod
-    @WebResult(name = "registrationResult", partName = "registrationResult")
-    @Action(input = "http://controllerPackage/ControllerInterface/registrationRequest", output = "http://controllerPackage/ControllerInterface/registrationResponse")
-    public Students registration(
-        @WebParam(name = "addStudentId", partName = "addStudentId")
-        int addStudentId,
-        @WebParam(name = "addStudentAllStudents", partName = "addStudentAllStudents")
-        Students addStudentAllStudents);
 
     /**
      * 
@@ -60,15 +42,15 @@ public interface ControllerInterface {
 
     /**
      * 
-     * @param allStudentsDetails
-     * @return
-     *     returns java.lang.String
+     * @param registrationRoleOfUser
+     * @param registrationId
      */
     @WebMethod
-    @WebResult(name = "studentDetailsResult", partName = "studentDetailsResult")
-    @Action(input = "http://controllerPackage/ControllerInterface/studentDetailsRequest", output = "http://controllerPackage/ControllerInterface/studentDetailsResponse")
-    public String studentDetails(
-        @WebParam(name = "allStudentsDetails", partName = "allStudentsDetails")
-        Students allStudentsDetails);
+    @Action(input = "http://controllerPackage/ControllerInterface/registrationRequest", output = "http://controllerPackage/ControllerInterface/registrationResponse")
+    public void registration(
+        @WebParam(name = "registrationRoleOfUser", partName = "registrationRoleOfUser")
+        Role registrationRoleOfUser,
+        @WebParam(name = "registrationId", partName = "registrationId")
+        int registrationId);
 
 }

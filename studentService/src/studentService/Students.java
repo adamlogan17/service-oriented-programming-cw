@@ -16,6 +16,7 @@ public class Students {
 	
 	public void add(Student newStudent) {
 		// need to add check to prevent it from going above 100
+		System.out.println("id in add = " + newStudent.getId());
 		for (int i = 0; allStudents.length > i; i++) {
 			if(allStudents[i] == null) {
 				allStudents[i] = newStudent;

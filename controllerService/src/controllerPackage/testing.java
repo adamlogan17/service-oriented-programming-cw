@@ -8,7 +8,7 @@ public class testing {
 		//allStuds = x.registration(1, allStuds);
 		
 		//System.out.println(x.studentDetails(allStuds));
-		x.registration(Role.STUDENT, 1);
+		//x.registration(Role.STUDENT, 3);
 		
 	}
 }

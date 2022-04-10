@@ -39,41 +39,13 @@ public class StudentsImpl implements StudentsInterface {
 			allStudents = (Students) unmarshaller.unmarshal( inputStream );
 		}
 
-		allStudents.add( newStudent );
+		allStudents.add(newStudent);
 
 		OutputStream outputStream = new FileOutputStream( PATH );
 		Marshaller marshaller = jAXBContext.createMarshaller();
 		marshaller.marshal( allStudents, outputStream );
-
+		
 		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
-	}
-	
-	
-	public Students addStudent2(Student newStudent) throws JAXBException, IOException {
-		Students allStudents = null;
-		JAXBContext jAXBContext = JAXBContext.newInstance( Students.class );
-
-		if( ! new java.io.File( PATH ).exists() ) {
-
-			new java.io.File( PATH ).createNewFile();
-			allStudents = new Students();
-		}
-
-		else {
-			InputStream inputStream = new FileInputStream( PATH );
-			jAXBContext = JAXBContext.newInstance( Students.class );
-			Unmarshaller unmarshaller = jAXBContext.createUnmarshaller();
-			allStudents = (Students) unmarshaller.unmarshal( inputStream );
-		}
-
-		allStudents.add( newStudent );
-
-		OutputStream outputStream = new FileOutputStream( PATH );
-		Marshaller marshaller = jAXBContext.createMarshaller();
-		marshaller.marshal( allStudents, outputStream );
-
-		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
-		return allStudents;
 	}
 	
 	public String studentDetails(Students allStudents) {
