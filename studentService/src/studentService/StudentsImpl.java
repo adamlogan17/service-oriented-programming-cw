@@ -31,7 +31,6 @@ public class StudentsImpl implements StudentsInterface {
 			new java.io.File( PATH ).createNewFile();
 			allStudents = new Students();
 		}
-
 		else {
 			InputStream inputStream = new FileInputStream( PATH );
 			jAXBContext = JAXBContext.newInstance( Students.class );
@@ -44,7 +43,7 @@ public class StudentsImpl implements StudentsInterface {
 		OutputStream outputStream = new FileOutputStream( PATH );
 		Marshaller marshaller = jAXBContext.createMarshaller();
 		marshaller.marshal( allStudents, outputStream );
-		
+
 		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
 	}
 	

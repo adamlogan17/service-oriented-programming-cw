@@ -29,17 +29,22 @@ public class Controller implements ControllerInterface
 	}
 	
 	public void registration(Role roleOfUser, int id) {
+		System.out.println("1");
 		StudentsInterface obj = null;
 		try {
 			obj = connectService();
+			System.out.println("2");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("3");
 		Student newStudent = new Student();
 		newStudent.setId(id);
+		System.out.println("4");
 		try {
 			obj.addStudent(newStudent);
+			System.out.println("5");
 		} catch (IOException_Exception | JAXBException_Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

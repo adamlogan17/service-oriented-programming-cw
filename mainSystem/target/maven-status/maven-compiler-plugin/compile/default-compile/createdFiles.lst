@@ -1,0 +1,5 @@
+controllerpackage\ControllerService.class
+controllerpackage\ControllerInterface.class
+mainPackage\CLI.class
+controllerpackage\Role.class
+controllerpackage\ObjectFactory.class
