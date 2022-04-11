@@ -27,22 +27,6 @@ public interface StudentsInterface {
 
     /**
      * 
-     * @param loginCheckPassword
-     * @param loginCheckUsername
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
-    @Action(input = "http://studentService/StudentsInterface/loginCheckRequest", output = "http://studentService/StudentsInterface/loginCheckResponse")
-    public boolean loginCheck(
-        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
-        String loginCheckUsername,
-        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
-        String loginCheckPassword);
-
-    /**
-     * 
      * @param addStudentNewStudent
      * @throws JAXBException_Exception
      * @throws IOException_Exception
@@ -57,5 +41,21 @@ public interface StudentsInterface {
         Student addStudentNewStudent)
         throws IOException_Exception, JAXBException_Exception
     ;
+
+    /**
+     * 
+     * @param loginCheckPassword
+     * @param loginCheckUsername
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
+    @Action(input = "http://studentService/StudentsInterface/loginCheckRequest", output = "http://studentService/StudentsInterface/loginCheckResponse")
+    public boolean loginCheck(
+        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
+        String loginCheckUsername,
+        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
+        String loginCheckPassword);
 
 }
