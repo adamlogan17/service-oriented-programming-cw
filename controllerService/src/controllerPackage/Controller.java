@@ -7,8 +7,8 @@ import javax.jws.WebService;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import studentservice.IOException_Exception;
-import studentservice.JAXBException_Exception;
+import staffservice.AcademicStaffMember;
+import staffservice.StaffsInterface;
 import studentservice.Student;
 import studentservice.StudentsInterface;
 
@@ -16,7 +16,7 @@ import studentservice.StudentsInterface;
 
 public class Controller implements ControllerInterface
 {
-	private StudentsInterface connectService() throws MalformedURLException {
+	private StudentsInterface connectStudentService() throws MalformedURLException {
 		URL url = new URL( "http://localhost:8080/studentService/?wsdl" );
 
 		QName qname = new QName( "http://studentService/", "StudentsImplService" );
@@ -28,22 +28,53 @@ public class Controller implements ControllerInterface
 		return obj;
 	}
 	
+	private StaffsInterface connectStaffService() throws MalformedURLException {
+		URL url = new URL( "http://localhost:8080/staffService/?wsdl" );
+
+		QName qname = new QName( "http://staffService/", "StaffsImplService" );
+
+		Service service = Service.create( url, qname );
+
+		StaffsInterface obj = service.getPort( StaffsInterface.class );
+		
+		return obj;
+	}
+	
 	public void registration(Role roleOfUser, int id) {
-		StudentsInterface obj = null;
-		try {
-			obj = connectService();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(roleOfUser == Role.STUDENT) {
+			StudentsInterface obj = null;
+			try {
+				obj = connectStudentService();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Student newStudent = new Student();
+			newStudent.setId(id);
+			try {
+				obj.addStudent(newStudent);
+			} catch (studentservice.IOException_Exception | studentservice.JAXBException_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			StaffsInterface obj = null;
+			try {
+				obj = connectStaffService();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			AcademicStaffMember newStaff = new AcademicStaffMember();
+			newStaff.setId(id);
+			try {
+				obj.addStaff(newStaff);
+			} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		Student newStudent = new Student();
-		newStudent.setId(id);
-		try {
-			obj.addStudent(newStudent);
-		} catch (IOException_Exception | JAXBException_Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 	public boolean loginCheck(String username, String password) {

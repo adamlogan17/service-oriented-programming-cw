@@ -26,6 +26,19 @@ public interface ControllerInterface {
 
     /**
      * 
+     * @param registrationRoleOfUser
+     * @param registrationId
+     */
+    @WebMethod
+    @Action(input = "http://controllerPackage/ControllerInterface/registrationRequest", output = "http://controllerPackage/ControllerInterface/registrationResponse")
+    public void registration(
+        @WebParam(name = "registrationRoleOfUser", partName = "registrationRoleOfUser")
+        Role registrationRoleOfUser,
+        @WebParam(name = "registrationId", partName = "registrationId")
+        int registrationId);
+
+    /**
+     * 
      * @param loginCheckPassword
      * @param loginCheckUsername
      * @return
@@ -39,18 +52,5 @@ public interface ControllerInterface {
         String loginCheckUsername,
         @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
         String loginCheckPassword);
-
-    /**
-     * 
-     * @param registrationRoleOfUser
-     * @param registrationId
-     */
-    @WebMethod
-    @Action(input = "http://controllerPackage/ControllerInterface/registrationRequest", output = "http://controllerPackage/ControllerInterface/registrationResponse")
-    public void registration(
-        @WebParam(name = "registrationRoleOfUser", partName = "registrationRoleOfUser")
-        Role registrationRoleOfUser,
-        @WebParam(name = "registrationId", partName = "registrationId")
-        int registrationId);
 
 }

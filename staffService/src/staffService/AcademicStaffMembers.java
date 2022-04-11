@@ -1,5 +1,12 @@
 package staffService;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 public class AcademicStaffMembers {
 	private AcademicStaffMember[] allStaff = new AcademicStaffMember[100];
 	
@@ -9,13 +16,13 @@ public class AcademicStaffMembers {
 	
 	public void add(AcademicStaffMember newStaff) {
 		// need to add check to prevent it from going above 100
-		AcademicStaffMember temp[] = new AcademicStaffMember[allStaff.length + 1];
-
+		System.out.println("id in add staff = " + newStaff.getId());
 		for (int i = 0; allStaff.length > i; i++) {
-			temp[i] = allStaff[i];
+			if(allStaff[i] == null) {
+				allStaff[i] = newStaff;
+				break;
+			}
 		}
-		temp[allStaff.length + 1] = newStaff;
-		allStaff = temp;
 	}
 	
 	public AcademicStaffMember[] getAllStaff() {

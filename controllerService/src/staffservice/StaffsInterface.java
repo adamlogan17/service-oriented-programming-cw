@@ -3,10 +3,11 @@ package staffservice;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 
 
 /**
@@ -17,23 +18,27 @@ import javax.xml.ws.Action;
  */
 @WebService(name = "StaffsInterface", targetNamespace = "http://staffService/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
+@XmlSeeAlso({
+    ObjectFactory.class
+})
 public interface StaffsInterface {
 
 
     /**
      * 
-     * @param loginCheckPassword
-     * @param loginCheckUsername
-     * @return
-     *     returns boolean
+     * @param addStaffNewStaff
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
-    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
-    @Action(input = "http://staffService/StaffsInterface/loginCheckRequest", output = "http://staffService/StaffsInterface/loginCheckResponse")
-    public boolean loginCheck(
-        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
-        String loginCheckUsername,
-        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
-        String loginCheckPassword);
+    @Action(input = "http://staffService/StaffsInterface/addStaffRequest", output = "http://staffService/StaffsInterface/addStaffResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/addStaff/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/addStaff/Fault/IOException")
+    })
+    public void addStaff(
+        @WebParam(name = "addStaffNewStaff", partName = "addStaffNewStaff")
+        AcademicStaffMember addStaffNewStaff)
+        throws IOException_Exception, JAXBException_Exception
+    ;
 
 }

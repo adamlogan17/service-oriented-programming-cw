@@ -1,6 +1,7 @@
 staffService\ModuleCode.class
+staffService\AcademicStaffMember.class
 staffService\StaffsInterface.class
-staffService\Staffs.class
+staffService\AcademicStaffMembers.class
+staffService\testingStaff.class
 staffService\StaffsImpl.class
-staffService\Staff.class
 staffService\Module.class

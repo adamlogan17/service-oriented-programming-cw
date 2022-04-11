@@ -3,12 +3,9 @@ package controllerPackage;
 public class testing {
 
 	public static void main(String[] args) {
-		Controller x = new Controller();
+		//Controller x = new Controller();
 		
-		//allStuds = x.registration(1, allStuds);
-		
-		//System.out.println(x.studentDetails(allStuds));
-		//x.registration(Role.STUDENT, 3);
-		
+		//x.registration(Role.STUDENT, 8);
+		//x.registration(Role.ACADEMIC_STAFF_MEMBER, 1);
 	}
 }
