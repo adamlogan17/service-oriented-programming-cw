@@ -12,41 +12,35 @@ import staffservice.StaffsInterface;
 import studentservice.Student;
 import studentservice.StudentsInterface;
 
-@WebService(endpointInterface="controllerPackage.ControllerInterface")
+@WebService(endpointInterface = "controllerPackage.ControllerInterface")
 
-public class Controller implements ControllerInterface
-{
+public class Controller implements ControllerInterface {
 	private StudentsInterface connectStudentService() throws MalformedURLException {
-		URL url = new URL( "http://localhost:8080/studentService/?wsdl" );
+		URL url = new URL("http://localhost:8080/studentService/?wsdl");
+		QName qname = new QName("http://studentService/", "StudentsImplService");
 
-		QName qname = new QName( "http://studentService/", "StudentsImplService" );
+		Service service = Service.create(url, qname);
+		StudentsInterface obj = service.getPort(StudentsInterface.class);
 
-		Service service = Service.create( url, qname );
-
-		StudentsInterface obj = service.getPort( StudentsInterface.class );
-		
 		return obj;
 	}
-	
+
 	private StaffsInterface connectStaffService() throws MalformedURLException {
-		URL url = new URL( "http://localhost:8080/staffService/?wsdl" );
+		URL url = new URL("http://localhost:8080/staffService/?wsdl");
+		QName qname = new QName("http://staffService/", "StaffsImplService");
 
-		QName qname = new QName( "http://staffService/", "StaffsImplService" );
+		Service service = Service.create(url, qname);
+		StaffsInterface obj = service.getPort(StaffsInterface.class);
 
-		Service service = Service.create( url, qname );
-
-		StaffsInterface obj = service.getPort( StaffsInterface.class );
-		
 		return obj;
 	}
-	
+
 	public void registration(Role roleOfUser, int id) {
-		if(roleOfUser == Role.STUDENT) {
+		if (roleOfUser == Role.STUDENT) {
 			StudentsInterface obj = null;
 			try {
 				obj = connectStudentService();
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Student newStudent = new Student();
@@ -54,7 +48,6 @@ public class Controller implements ControllerInterface
 			try {
 				obj.addStudent(newStudent);
 			} catch (studentservice.IOException_Exception | studentservice.JAXBException_Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -62,7 +55,6 @@ public class Controller implements ControllerInterface
 			try {
 				obj = connectStaffService();
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			AcademicStaffMember newStaff = new AcademicStaffMember();
@@ -70,16 +62,17 @@ public class Controller implements ControllerInterface
 			try {
 				obj.addStaff(newStaff);
 			} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
-	public boolean loginCheck(String username, String password) {
-		// TODO Auto-generated method stub
-		return false;
+	public void enroll(int staffID, int studentID) {
+		StaffsInterface service = null;
+		try {
+			service = connectStaffService();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
-
 }

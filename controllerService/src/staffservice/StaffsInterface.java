@@ -3,6 +3,7 @@ package staffservice;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -27,8 +28,8 @@ public interface StaffsInterface {
     /**
      * 
      * @param addStaffNewStaff
-     * @throws JAXBException_Exception
      * @throws IOException_Exception
+     * @throws JAXBException_Exception
      */
     @WebMethod
     @Action(input = "http://staffService/StaffsInterface/addStaffRequest", output = "http://staffService/StaffsInterface/addStaffResponse", fault = {
@@ -38,6 +39,23 @@ public interface StaffsInterface {
     public void addStaff(
         @WebParam(name = "addStaffNewStaff", partName = "addStaffNewStaff")
         AcademicStaffMember addStaffNewStaff)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns staffservice.ArrayList
+     * @throws IOException_Exception
+     * @throws JAXBException_Exception
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://staffService/StaffsInterface/getStaffRequest", output = "http://staffService/StaffsInterface/getStaffResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/getStaff/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/getStaff/Fault/IOException")
+    })
+    public ArrayList getStaff()
         throws IOException_Exception, JAXBException_Exception
     ;
 

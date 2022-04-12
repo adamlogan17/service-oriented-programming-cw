@@ -3,7 +3,6 @@ package controllerpackage;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -39,18 +38,15 @@ public interface ControllerInterface {
 
     /**
      * 
-     * @param loginCheckPassword
-     * @param loginCheckUsername
-     * @return
-     *     returns boolean
+     * @param staffID
+     * @param studentID
      */
     @WebMethod
-    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
-    @Action(input = "http://controllerPackage/ControllerInterface/loginCheckRequest", output = "http://controllerPackage/ControllerInterface/loginCheckResponse")
-    public boolean loginCheck(
-        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
-        String loginCheckUsername,
-        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
-        String loginCheckPassword);
+    @Action(input = "http://controllerPackage/ControllerInterface/enrollRequest", output = "http://controllerPackage/ControllerInterface/enrollResponse")
+    public void enroll(
+        @WebParam(name = "staffID", partName = "staffID")
+        int staffID,
+        @WebParam(name = "studentID", partName = "studentID")
+        int studentID);
 
 }

@@ -21,24 +21,30 @@ public class CLI {
 		ControllerInterface cont = service.getPort( ControllerInterface.class );
 		
 		batchRegistration(cont);
+		enroll(cont);
 	}
 	
 	private static void batchRegistration(ControllerInterface cont) {
-		System.out.println("1. Batch registration of end-users");
-		System.out.println();
+		System.out.println("1. Batch registration of end-users\n");
 		
-		// enrolling the students
+		// Enrolling the students
 		for(int i=0; i<=4; i++) {
 			cont.registration(Role.STUDENT, i);
-			System.out.println("Enrolling the " + Role.STUDENT + " with ID " + i);
-			System.out.println();
+			System.out.println("Enrolling the " + Role.STUDENT + " with ID " + i + "\n");
 		}
 		
-		// enrolling the staff
+		// Enrolling the staff
 		for(int i=5; i<=6; i++) {
 			cont.registration(Role.ACADEMIC_STAFF_MEMBER, i);
-			System.out.println("Enrolling the " + Role.ACADEMIC_STAFF_MEMBER + " with ID " + i);
-			System.out.println();
+			System.out.println("Enrolling the " + Role.ACADEMIC_STAFF_MEMBER + " with ID " + i + "\n");
 		}
+	}
+	
+	private static void enroll(ControllerInterface cont) {
+		System.out.println("2. Enrolling a student on a module\n");
+		
+		cont.enroll(0, 1);
+		cont.enroll(5, 7);
+		cont.enroll(5, 1);
 	}
 }

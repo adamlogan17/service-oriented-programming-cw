@@ -15,8 +15,8 @@ import javax.jws.soap.SOAPBinding.Style;
 public interface ControllerInterface
 {
 	@WebMethod
-	public @WebResult(name = "loginCheckResult") boolean loginCheck( @WebParam(name = "loginCheckUsername") String username, @WebParam(name = "loginCheckPassword") String password );
+	public void registration(@WebParam(name = "registrationRoleOfUser") Role roleOfUser, @WebParam(name = "registrationId") int id);
 
 	@WebMethod
-	public void registration(@WebParam(name = "registrationRoleOfUser") Role roleOfUser, @WebParam(name = "registrationId") int id);
+	public void enroll(@WebParam(name = "staffID") int staffID, @WebParam(name = "studentID") int studentID);
 }
