@@ -27,6 +27,22 @@ public interface StudentsInterface {
 
     /**
      * 
+     * @param loginCheckPassword
+     * @param loginCheckUsername
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
+    @Action(input = "http://studentService/StudentsInterface/loginCheckRequest", output = "http://studentService/StudentsInterface/loginCheckResponse")
+    public boolean loginCheck(
+        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
+        String loginCheckUsername,
+        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
+        String loginCheckPassword);
+
+    /**
+     * 
      * @param addStudentNewStudent
      * @throws JAXBException_Exception
      * @throws IOException_Exception
@@ -44,18 +60,28 @@ public interface StudentsInterface {
 
     /**
      * 
-     * @param loginCheckPassword
-     * @param loginCheckUsername
+     * @param enrollMc
+     * @param enrollAnnualYear
+     * @param enrollId
      * @return
-     *     returns boolean
+     *     returns int
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
-    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
-    @Action(input = "http://studentService/StudentsInterface/loginCheckRequest", output = "http://studentService/StudentsInterface/loginCheckResponse")
-    public boolean loginCheck(
-        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
-        String loginCheckUsername,
-        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
-        String loginCheckPassword);
+    @WebResult(name = "enrollResult", partName = "enrollResult")
+    @Action(input = "http://studentService/StudentsInterface/enrollRequest", output = "http://studentService/StudentsInterface/enrollResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/enroll/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/enroll/Fault/IOException")
+    })
+    public int enroll(
+        @WebParam(name = "enrollId", partName = "enrollId")
+        int enrollId,
+        @WebParam(name = "enrollMc", partName = "enrollMc")
+        ModuleCode enrollMc,
+        @WebParam(name = "enrollAnnualYear", partName = "enrollAnnualYear")
+        String enrollAnnualYear)
+        throws IOException_Exception, JAXBException_Exception
+    ;
 
 }

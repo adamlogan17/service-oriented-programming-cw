@@ -10,6 +10,8 @@ public class Module {
 	String academicYear;
 	double mark;
 	
+	public Module() {};
+	
 	public Module(ModuleCode mcForModule, String yearTaught) {
 		this.mc = mcForModule;
 		this.academicYear = yearTaught; // need to do regex check here

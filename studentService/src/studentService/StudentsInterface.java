@@ -21,8 +21,7 @@ public interface StudentsInterface {
 	@WebMethod
 	public void addStudent(@WebParam(name = "addStudentNewStudent") Student newStudent) throws JAXBException, IOException;
 	
-	/*
 	@WebMethod
-	public @WebResult(name = "studentDetailsResult") String studentDetails(@WebParam(name = "allStudentsDetails") Students allStudents);
-	*/
+	public @WebResult(name = "enrollResult") int enroll(@WebParam(name = "enrollId") int id, @WebParam(name = "enrollMc") ModuleCode mc, @WebParam(name = "enrollAnnualYear") String annualYear) throws JAXBException, IOException;
+	
 }

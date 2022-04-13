@@ -9,8 +9,11 @@ import javax.xml.ws.Service;
 
 import staffservice.AcademicStaffMember;
 import staffservice.StaffsInterface;
+import studentservice.IOException_Exception;
+import studentservice.JAXBException_Exception;
 import studentservice.Student;
 import studentservice.StudentsInterface;
+import studentservice.ModuleCode;
 
 @WebService(endpointInterface = "controllerPackage.ControllerInterface")
 
@@ -67,12 +70,33 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
-	public void enroll(int staffID, int studentID) {
-		StaffsInterface service = null;
+	public int enroll(int staffID, ModuleCode mc, String annualYear, int studentID) {
+		StaffsInterface staffService = null;
+		StudentsInterface studService = null;
 		try {
-			service = connectStaffService();
+			staffService = connectStaffService();
+			studService = connectStudentService();
 		} catch (MalformedURLException e) {
+			System.out.println("1");
 			e.printStackTrace();
 		}
+		
+		try {
+			if(staffService.staffExist(staffID) == -1) {
+				return -1;
+			}
+		} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e1) {
+			System.out.println("2");
+			e1.printStackTrace();
+		}
+		
+		try {
+			return studService.enroll(studentID, mc, annualYear);
+		} catch (IOException_Exception | JAXBException_Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("3");
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }

@@ -9,6 +9,8 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
+import studentservice.ModuleCode;
+
 
 @WebService
 @SOAPBinding(style=Style.RPC)
@@ -18,5 +20,5 @@ public interface ControllerInterface
 	public void registration(@WebParam(name = "registrationRoleOfUser") Role roleOfUser, @WebParam(name = "registrationId") int id);
 
 	@WebMethod
-	public void enroll(@WebParam(name = "staffID") int staffID, @WebParam(name = "studentID") int studentID);
+	public @WebResult(name = "enrollResult") int enroll(@WebParam(name = "enrollStaffID") int staffID, @WebParam(name = "enrollMC") ModuleCode mc, @WebParam(name = "enrollYear") String annualYear, @WebParam(name = "enrollStudID") int studentID);
 }

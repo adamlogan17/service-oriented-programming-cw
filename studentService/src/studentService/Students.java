@@ -25,7 +25,7 @@ public class Students {
 		}
 	}
 	
-	public Student[] getStudents() {
+	public Student[] getAllStudents() {
 		return allStudents;
 	}
 }

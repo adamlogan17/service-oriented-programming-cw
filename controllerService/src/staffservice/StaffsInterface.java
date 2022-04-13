@@ -28,8 +28,8 @@ public interface StaffsInterface {
     /**
      * 
      * @param addStaffNewStaff
-     * @throws IOException_Exception
      * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
     @Action(input = "http://staffService/StaffsInterface/addStaffRequest", output = "http://staffService/StaffsInterface/addStaffResponse", fault = {
@@ -44,18 +44,21 @@ public interface StaffsInterface {
 
     /**
      * 
+     * @param staffID
      * @return
-     *     returns staffservice.ArrayList
-     * @throws IOException_Exception
+     *     returns int
      * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://staffService/StaffsInterface/getStaffRequest", output = "http://staffService/StaffsInterface/getStaffResponse", fault = {
-        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/getStaff/Fault/JAXBException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/getStaff/Fault/IOException")
+    @WebResult(name = "staffExistResult", partName = "staffExistResult")
+    @Action(input = "http://staffService/StaffsInterface/staffExistRequest", output = "http://staffService/StaffsInterface/staffExistResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/staffExist/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/staffExist/Fault/IOException")
     })
-    public ArrayList getStaff()
+    public int staffExist(
+        @WebParam(name = "StaffID", partName = "StaffID")
+        int staffID)
         throws IOException_Exception, JAXBException_Exception
     ;
 

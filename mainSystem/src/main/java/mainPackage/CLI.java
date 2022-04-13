@@ -8,6 +8,7 @@ import javax.xml.ws.Service;
 
 import controllerpackage.ControllerInterface;
 import controllerpackage.Role;
+import studentservice.ModuleCode;
 
 public class CLI {
 
@@ -21,7 +22,11 @@ public class CLI {
 		ControllerInterface cont = service.getPort( ControllerInterface.class );
 		
 		batchRegistration(cont);
-		enroll(cont);
+		
+		System.out.println("2. Enrolling a student on a module\n");
+		enroll(cont, 0, ModuleCode.CSC_1022, "AY_2021_22", 1);
+		enroll(cont, 5, ModuleCode.CSC_1022, "AY_2021_22", 7);
+		enroll(cont, 5, ModuleCode.CSC_1022, "AY_2021_22", 1);
 	}
 	
 	private static void batchRegistration(ControllerInterface cont) {
@@ -40,11 +45,11 @@ public class CLI {
 		}
 	}
 	
-	private static void enroll(ControllerInterface cont) {
-		System.out.println("2. Enrolling a student on a module\n");
-		
-		cont.enroll(0, 1);
-		cont.enroll(5, 7);
-		cont.enroll(5, 1);
+	private static void enroll(ControllerInterface cont, int staffId, ModuleCode mc, String annualYear, int studId) {
+		if(cont.enroll(staffId, mc, annualYear, studId) == -1) System.out.println("Error enrolling student with ID " + studId + " by the"
+				+ " academic staff member with ID " + staffId);
+		else System.out.println("Successful enrolment of the student with ID " + studId + " on the module with code " + mc +", "
+				+ annualYear + " by the academic staff member with ID " + staffId);
+		System.out.println();
 	}
 }

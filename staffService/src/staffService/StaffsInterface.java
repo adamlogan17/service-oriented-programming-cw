@@ -16,5 +16,8 @@ public interface StaffsInterface {
 
 	@WebMethod
 	public void addStaff(@WebParam(name = "addStaffNewStaff") AcademicStaffMember newStaff) throws JAXBException, IOException;
+	
+	@WebMethod
+	public @WebResult(name = "staffExistResult") int staffExist(@WebParam(name = "StaffID")int id) throws JAXBException, IOException;
 
 }

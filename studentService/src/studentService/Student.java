@@ -15,6 +15,28 @@ public class Student {
 		this.id = newID;
 	}
 	
+	public void addMc(ModuleCode mc, String annualYear) {
+		Module newModule = new Module(mc , annualYear);
+		
+		for (int i = 0; enrolledMcs.length > i; i++) {
+			if(enrolledMcs[i] == null) {
+				enrolledMcs[i] = mc;
+				enrolledModules[i] = newModule;
+				break;
+			}
+		}
+	}
+	
+	public boolean ifMcExists(ModuleCode mc) {
+		for(ModuleCode enrolledMc: enrolledMcs) {
+			System.out.println(enrolledMc);
+			if(enrolledMc == mc) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void setId(int newId) {
 		this.id = newId;
 	}

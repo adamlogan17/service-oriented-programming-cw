@@ -3,10 +3,12 @@ package controllerpackage;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import studentservice.ModuleCode;
 
 
 /**
@@ -18,7 +20,8 @@ import javax.xml.ws.Action;
 @WebService(name = "ControllerInterface", targetNamespace = "http://controllerPackage/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    ObjectFactory.class
+    controllerpackage.ObjectFactory.class,
+    studentservice.ObjectFactory.class
 })
 public interface ControllerInterface {
 
@@ -38,15 +41,24 @@ public interface ControllerInterface {
 
     /**
      * 
-     * @param staffID
-     * @param studentID
+     * @param enrollYear
+     * @param enrollStaffID
+     * @param enrollStudID
+     * @param enrollMC
+     * @return
+     *     returns int
      */
     @WebMethod
+    @WebResult(name = "enrollResult", partName = "enrollResult")
     @Action(input = "http://controllerPackage/ControllerInterface/enrollRequest", output = "http://controllerPackage/ControllerInterface/enrollResponse")
-    public void enroll(
-        @WebParam(name = "staffID", partName = "staffID")
-        int staffID,
-        @WebParam(name = "studentID", partName = "studentID")
-        int studentID);
+    public int enroll(
+        @WebParam(name = "enrollStaffID", partName = "enrollStaffID")
+        int enrollStaffID,
+        @WebParam(name = "enrollMC", partName = "enrollMC")
+        ModuleCode enrollMC,
+        @WebParam(name = "enrollYear", partName = "enrollYear")
+        String enrollYear,
+        @WebParam(name = "enrollStudID", partName = "enrollStudID")
+        int enrollStudID);
 
 }

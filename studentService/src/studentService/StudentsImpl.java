@@ -48,10 +48,77 @@ public class StudentsImpl implements StudentsInterface {
 		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
 	}
 	
+	public int studentExist(int id, ModuleCode mc) throws JAXBException, IOException {
+		Students allStudents = null;
+		JAXBContext jAXBContext = JAXBContext.newInstance( Students.class );
+
+		if( ! new java.io.File( PATH ).exists() ) {
+			return -1;
+		}
+
+		else {
+			InputStream inputStream = new FileInputStream( PATH );
+			jAXBContext = JAXBContext.newInstance( Students.class );
+			Unmarshaller unmarshaller = jAXBContext.createUnmarshaller();
+			allStudents = (Students) unmarshaller.unmarshal( inputStream );
+		}
+		
+		for(Student stud: allStudents.getAllStudents()) {
+			if(stud.getId() == id) {
+				if(!stud.ifMcExists(mc)) {
+					return 0;
+				} else {
+					return -1;
+				}
+			}
+		}
+		return -1;
+	}
+	
+	public int enroll(int id, ModuleCode mc, String annualYear) throws JAXBException, IOException {
+		Students allStudents = null;
+		JAXBContext jAXBContext = JAXBContext.newInstance( Students.class );
+
+		if( ! new java.io.File( PATH ).exists() ) {
+
+			new java.io.File( PATH ).createNewFile();
+			allStudents = new Students();
+		}
+
+		else {
+			InputStream inputStream = new FileInputStream( PATH );
+			jAXBContext = JAXBContext.newInstance( Students.class );
+			Unmarshaller unmarshaller = jAXBContext.createUnmarshaller();
+			allStudents = (Students) unmarshaller.unmarshal( inputStream );
+		}
+
+		for(Student stud: allStudents.getAllStudents()) {
+			if(stud == null) {
+				System.out.println("hellop");
+				return -1;
+			}
+			if(stud.getId() == id) {
+				if(!stud.ifMcExists(mc)) {
+					stud.addMc(mc, annualYear);
+					OutputStream outputStream = new FileOutputStream( PATH );
+					Marshaller marshaller = jAXBContext.createMarshaller();
+					marshaller.marshal( allStudents, outputStream );
+					
+					System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
+					
+					return 0;
+				} else {
+					return -1;
+				}
+			}
+		}
+		return -1;
+	}
+	
 	public String studentDetails(Students allStudents) {
 		String details = "";
 		
-		Student[] arryOfStudents = allStudents.getStudents();
+		Student[] arryOfStudents = allStudents.getAllStudents();
 		
 		for(Student stud: arryOfStudents) {
 			if(stud != null) {

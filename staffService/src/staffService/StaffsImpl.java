@@ -42,4 +42,30 @@ public class StaffsImpl implements StaffsInterface {
 		
 		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
 	}
+	
+	public int staffExist(int id) throws JAXBException, IOException {
+		AcademicStaffMembers allStaff = null;
+		JAXBContext jAXBContext = JAXBContext.newInstance( AcademicStaffMembers.class );
+
+		if( ! new java.io.File( PATH ).exists() ) {
+			return -1;
+		}
+
+		else {
+			InputStream inputStream = new FileInputStream( PATH );
+			jAXBContext = JAXBContext.newInstance( AcademicStaffMembers.class );
+			Unmarshaller unmarshaller = jAXBContext.createUnmarshaller();
+			allStaff = (AcademicStaffMembers) unmarshaller.unmarshal( inputStream );
+		}
+		
+		for(AcademicStaffMember staff: allStaff.getAllStaff()) {
+			if(staff == null) {
+				return -1;
+			}
+			if(staff.getId() == id) {
+				return 0;
+			}
+		}
+		return -1;
+	}
 }
