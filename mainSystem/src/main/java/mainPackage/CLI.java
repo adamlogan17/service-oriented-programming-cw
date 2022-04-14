@@ -33,6 +33,10 @@ public class CLI {
 		insertMark(cont, 5, ModuleCode.CSC_1023, 100, 1);
 		insertMark(cont, 5, ModuleCode.CSC_1022, 100, 7);
 		insertMark(cont, 5, ModuleCode.CSC_1022, 100, 1);
+		
+		System.out.println("4. Reporting the mark of a student\n");
+		printMark(cont, 1, ModuleCode.CSC_1022, 2);
+		printMark(cont, 5, ModuleCode.CSC_1022, 1);
 	}
 	
 	private static void batchRegistration(ControllerInterface cont) {
@@ -64,6 +68,18 @@ public class CLI {
 				+ "on the module with code " + mc + " by the academic staff member with ID" + staffId);
 		else System.out.println("Successful insertion of the mark " + mark + " for the student with ID " + studId + " on the module with code " + mc
 				+ " by the academic staff member with ID " + staffId);
+		System.out.println();
+	}
+	
+	private static void printMark(ControllerInterface cont, int staffId, ModuleCode mc, int studId) {
+		String result = cont.printMark(staffId, mc, studId);
+		if(result.equals("")) {
+			System.out.println("Error reporting the module for the student with ID " + studId + " by the academic staff member with "
+					+ "ID " + staffId);
+		} else {
+			System.out.println("Reporting the module for the student with ID " + studId + " by the academic staff member with ID "
+					+ staffId + result);
+		}
 		System.out.println();
 	}
 }

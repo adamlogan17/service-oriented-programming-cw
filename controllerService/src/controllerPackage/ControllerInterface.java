@@ -24,4 +24,7 @@ public interface ControllerInterface
 
 	@WebMethod
     public @WebResult(name = "insertMarkResult") int insertMark(@WebParam(name = "insertMarkStaffID") int staffID, @WebParam(name = "insertMarkMC") ModuleCode mc, @WebParam(name = "insertedMark") double mark, @WebParam(name = "insertMarkStudID") int studentID);
+
+	@WebMethod
+    public @WebResult(name = "printMarkResult") String printMark(@WebParam(name = "printMarkStaffID") int staffID, @WebParam(name = "printMarkMC") ModuleCode mc, @WebParam(name = "printMarkStudID") int studentID);
 }

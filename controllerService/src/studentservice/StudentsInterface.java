@@ -27,13 +27,36 @@ public interface StudentsInterface {
 
     /**
      * 
+     * @param printMarkId
+     * @param printMarkMc
+     * @return
+     *     returns java.lang.String
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(name = "printMarkResult", partName = "printMarkResult")
+    @Action(input = "http://studentService/StudentsInterface/printMarkRequest", output = "http://studentService/StudentsInterface/printMarkResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/printMark/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/printMark/Fault/IOException")
+    })
+    public String printMark(
+        @WebParam(name = "printMarkId", partName = "printMarkId")
+        int printMarkId,
+        @WebParam(name = "printMarkMc", partName = "printMarkMc")
+        ModuleCode printMarkMc)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
      * @param mc
      * @param insertMarkId
      * @param mark
      * @return
      *     returns int
-     * @throws IOException_Exception
      * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
     @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
@@ -54,8 +77,8 @@ public interface StudentsInterface {
     /**
      * 
      * @param addStudentNewStudent
-     * @throws IOException_Exception
      * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
     @Action(input = "http://studentService/StudentsInterface/addStudentRequest", output = "http://studentService/StudentsInterface/addStudentResponse", fault = {
@@ -75,8 +98,8 @@ public interface StudentsInterface {
      * @param enrollId
      * @return
      *     returns int
-     * @throws IOException_Exception
      * @throws JAXBException_Exception
+     * @throws IOException_Exception
      */
     @WebMethod
     @WebResult(name = "enrollResult", partName = "enrollResult")

@@ -16,7 +16,7 @@ import javax.xml.bind.Unmarshaller;
 @WebService(endpointInterface="studentService.StudentsInterface")
 public class StudentsImpl implements StudentsInterface {
 	
-	private final static String PATH = "C:/Users/Smcke/Desktop/StudentRegistration.xml";
+	private final static String PATH = "StudentRegistration.xml";
 	
 	public void addStudent(Student newStudent) throws JAXBException, IOException {
 		Students allStudents = null;
@@ -147,5 +147,39 @@ public class StudentsImpl implements StudentsInterface {
 			}
 		}
 		return -1;
+	}
+	
+	public String printMark(int id, ModuleCode mc) throws JAXBException, IOException {
+		String result = "";
+		Students allStudents = null;
+		JAXBContext jAXBContext = JAXBContext.newInstance( Students.class );
+
+		if( ! new java.io.File( PATH ).exists() ) {
+
+			new java.io.File( PATH ).createNewFile();
+			allStudents = new Students();
+		}
+
+		else {
+			InputStream inputStream = new FileInputStream( PATH );
+			jAXBContext = JAXBContext.newInstance( Students.class );
+			Unmarshaller unmarshaller = jAXBContext.createUnmarshaller();
+			allStudents = (Students) unmarshaller.unmarshal( inputStream );
+		}
+
+		for(Student stud: allStudents.getAllStudents()) {
+			if(stud == null) {
+				return result;
+			}
+			if(stud.getId() == id) {
+				if(stud.ifMcExists(mc)) {
+					result = stud.getModuleDetails(mc);
+					return result;
+				} else {
+					return result;
+				}
+			}
+		}
+		return result;
 	}
 }

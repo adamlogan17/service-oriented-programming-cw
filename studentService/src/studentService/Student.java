@@ -48,8 +48,20 @@ public class Student {
 	public void addMark(ModuleCode mc, double mark) {
 		for (int i = 0; enrolledModules.length > i; i++) {
 			if(enrolledModules[i] != null) {
-				if (enrolledModules[i].getMc() == mc) enrolledModules[i].addMark(mark);;
+				if (enrolledModules[i].getMc() == mc) enrolledModules[i].addMark(mark);
 			}
 		}
+	}
+	
+	public String getModuleDetails(ModuleCode mc) {
+		String result = "";
+		for (int i = 0; enrolledModules.length > i; i++) {
+			if(enrolledModules[i] != null) {
+				if (enrolledModules[i].getMc() == mc) {
+					 result = " " + enrolledModules[i].getMc() + " " + enrolledModules[i].getAcademicYear() + " " + Double.toString(enrolledModules[i].getMark());
+				}
+			}
+		}
+		return result;
 	}
 }

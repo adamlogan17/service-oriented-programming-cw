@@ -29,4 +29,8 @@ public class Module {
 	public ModuleCode getMc() {
 		return mc;
 	}
+	
+	public String getAcademicYear() {
+		return academicYear;
+	}
 }

@@ -24,4 +24,6 @@ public interface StudentsInterface {
 	@WebMethod
 	public @WebResult(name = "insertMarkResult") int insertMark(@WebParam(name = "insertMarkId") int id, @WebParam(name = "mc") ModuleCode mc, @WebParam(name = "mark") double mark) throws JAXBException, IOException;
 
+	@WebMethod
+	public @WebResult(name = "printMarkResult") String printMark(@WebParam(name = "printMarkId") int id, @WebParam(name = "printMarkMc") ModuleCode mc) throws JAXBException, IOException;
 }

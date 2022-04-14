@@ -63,6 +63,25 @@ public interface ControllerInterface {
 
     /**
      * 
+     * @param printMarkStudID
+     * @param printMarkStaffID
+     * @param printMarkMC
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(name = "printMarkResult", partName = "printMarkResult")
+    @Action(input = "http://controllerPackage/ControllerInterface/printMarkRequest", output = "http://controllerPackage/ControllerInterface/printMarkResponse")
+    public String printMark(
+        @WebParam(name = "printMarkStaffID", partName = "printMarkStaffID")
+        int printMarkStaffID,
+        @WebParam(name = "printMarkMC", partName = "printMarkMC")
+        ModuleCode printMarkMC,
+        @WebParam(name = "printMarkStudID", partName = "printMarkStudID")
+        int printMarkStudID);
+
+    /**
+     * 
      * @param insertMarkStudID
      * @param insertMarkStaffID
      * @param insertedMark
