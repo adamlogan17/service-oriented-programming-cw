@@ -10,7 +10,7 @@ public class Module {
 		this.academicYear = yearTaught; // need to do regex check here
 	}
 	
-	public void addMark(int newMark) {
+	public void addMark(double newMark) {
 		// need to do check for 0 to 100 here
 		mark = newMark;
 	}

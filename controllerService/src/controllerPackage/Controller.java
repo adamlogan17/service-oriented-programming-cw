@@ -99,4 +99,33 @@ public class Controller implements ControllerInterface {
 		}
 		return -1;
 	}
+	
+	public int insertMark(int staffID, ModuleCode mc, double mark, int studentID) {
+		StaffsInterface staffService = null;
+		StudentsInterface studService = null;
+		try {
+			staffService = connectStaffService();
+			studService = connectStudentService();
+		} catch (MalformedURLException e) {
+			System.out.println("1");
+			e.printStackTrace();
+		}
+		
+		try {
+			if(staffService.staffExist(staffID) == -1) {
+				return -1;
+			}
+		} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e1) {
+			System.out.println("2");
+			e1.printStackTrace();
+		}
+		try {
+			return studService.insertMark(studentID, mc, mark);
+		} catch (IOException_Exception | JAXBException_Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("3");
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

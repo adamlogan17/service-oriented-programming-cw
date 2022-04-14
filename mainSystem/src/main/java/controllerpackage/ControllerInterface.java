@@ -61,4 +61,26 @@ public interface ControllerInterface {
         @WebParam(name = "enrollStudID", partName = "enrollStudID")
         int enrollStudID);
 
+    /**
+     * 
+     * @param insertMarkStudID
+     * @param insertMarkStaffID
+     * @param insertedMark
+     * @param insertMarkMC
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
+    @Action(input = "http://controllerPackage/ControllerInterface/insertMarkRequest", output = "http://controllerPackage/ControllerInterface/insertMarkResponse")
+    public int insertMark(
+        @WebParam(name = "insertMarkStaffID", partName = "insertMarkStaffID")
+        int insertMarkStaffID,
+        @WebParam(name = "insertMarkMC", partName = "insertMarkMC")
+        ModuleCode insertMarkMC,
+        @WebParam(name = "insertedMark", partName = "insertedMark")
+        double insertedMark,
+        @WebParam(name = "insertMarkStudID", partName = "insertMarkStudID")
+        int insertMarkStudID);
+
 }

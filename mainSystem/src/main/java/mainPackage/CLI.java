@@ -27,6 +27,12 @@ public class CLI {
 		enroll(cont, 0, ModuleCode.CSC_1022, "AY_2021_22", 1);
 		enroll(cont, 5, ModuleCode.CSC_1022, "AY_2021_22", 7);
 		enroll(cont, 5, ModuleCode.CSC_1022, "AY_2021_22", 1);
+		
+		System.out.println("3. Inserting a new mark\n");
+		insertMark(cont, 0, ModuleCode.CSC_1022, 100, 1);
+		insertMark(cont, 5, ModuleCode.CSC_1023, 100, 1);
+		insertMark(cont, 5, ModuleCode.CSC_1022, 100, 7);
+		insertMark(cont, 5, ModuleCode.CSC_1022, 100, 1);
 	}
 	
 	private static void batchRegistration(ControllerInterface cont) {
@@ -50,6 +56,14 @@ public class CLI {
 				+ " academic staff member with ID " + staffId);
 		else System.out.println("Successful enrolment of the student with ID " + studId + " on the module with code " + mc +", "
 				+ annualYear + " by the academic staff member with ID " + staffId);
+		System.out.println();
+	}
+	
+	private static void insertMark(ControllerInterface cont, int staffId, ModuleCode mc, double mark, int studId) {
+		if(cont.insertMark(staffId, mc, mark, studId) == -1) System.out.println("Error inserting the mark " + mark + " for the student with ID " + studId
+				+ "on the module with code " + mc + " by the academic staff member with ID" + staffId);
+		else System.out.println("Successful insertion of the mark " + mark + " for the student with ID " + studId + " on the module with code " + mc
+				+ " by the academic staff member with ID " + staffId);
 		System.out.println();
 	}
 }

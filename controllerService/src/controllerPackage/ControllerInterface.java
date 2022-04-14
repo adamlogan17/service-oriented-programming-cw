@@ -21,4 +21,7 @@ public interface ControllerInterface
 
 	@WebMethod
 	public @WebResult(name = "enrollResult") int enroll(@WebParam(name = "enrollStaffID") int staffID, @WebParam(name = "enrollMC") ModuleCode mc, @WebParam(name = "enrollYear") String annualYear, @WebParam(name = "enrollStudID") int studentID);
+
+	@WebMethod
+    public @WebResult(name = "insertMarkResult") int insertMark(@WebParam(name = "insertMarkStaffID") int staffID, @WebParam(name = "insertMarkMC") ModuleCode mc, @WebParam(name = "insertedMark") double mark, @WebParam(name = "insertMarkStudID") int studentID);
 }

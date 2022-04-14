@@ -1,5 +1,9 @@
-controllerpackage\ControllerService.class
+staffservice\ObjectFactory.class
 controllerpackage\ControllerInterface.class
-mainPackage\CLI.class
+studentservice\ModuleCode.class
 controllerpackage\Role.class
 controllerpackage\ObjectFactory.class
+staffservice\ModuleCode.class
+controllerpackage\ControllerService.class
+studentservice\ObjectFactory.class
+mainPackage\CLI.class

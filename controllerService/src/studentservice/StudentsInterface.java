@@ -27,25 +27,35 @@ public interface StudentsInterface {
 
     /**
      * 
-     * @param loginCheckPassword
-     * @param loginCheckUsername
+     * @param mc
+     * @param insertMarkId
+     * @param mark
      * @return
-     *     returns boolean
+     *     returns int
+     * @throws IOException_Exception
+     * @throws JAXBException_Exception
      */
     @WebMethod
-    @WebResult(name = "loginCheckResult", partName = "loginCheckResult")
-    @Action(input = "http://studentService/StudentsInterface/loginCheckRequest", output = "http://studentService/StudentsInterface/loginCheckResponse")
-    public boolean loginCheck(
-        @WebParam(name = "loginCheckUsername", partName = "loginCheckUsername")
-        String loginCheckUsername,
-        @WebParam(name = "loginCheckPassword", partName = "loginCheckPassword")
-        String loginCheckPassword);
+    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
+    @Action(input = "http://studentService/StudentsInterface/insertMarkRequest", output = "http://studentService/StudentsInterface/insertMarkResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/insertMark/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/insertMark/Fault/IOException")
+    })
+    public int insertMark(
+        @WebParam(name = "insertMarkId", partName = "insertMarkId")
+        int insertMarkId,
+        @WebParam(name = "mc", partName = "mc")
+        ModuleCode mc,
+        @WebParam(name = "mark", partName = "mark")
+        double mark)
+        throws IOException_Exception, JAXBException_Exception
+    ;
 
     /**
      * 
      * @param addStudentNewStudent
-     * @throws JAXBException_Exception
      * @throws IOException_Exception
+     * @throws JAXBException_Exception
      */
     @WebMethod
     @Action(input = "http://studentService/StudentsInterface/addStudentRequest", output = "http://studentService/StudentsInterface/addStudentResponse", fault = {
@@ -65,8 +75,8 @@ public interface StudentsInterface {
      * @param enrollId
      * @return
      *     returns int
-     * @throws JAXBException_Exception
      * @throws IOException_Exception
+     * @throws JAXBException_Exception
      */
     @WebMethod
     @WebResult(name = "enrollResult", partName = "enrollResult")

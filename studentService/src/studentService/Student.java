@@ -44,4 +44,12 @@ public class Student {
 	public int getId() {
 		return id;
 	}
+	
+	public void addMark(ModuleCode mc, double mark) {
+		for (int i = 0; enrolledModules.length > i; i++) {
+			if(enrolledModules[i] != null) {
+				if (enrolledModules[i].getMc() == mc) enrolledModules[i].addMark(mark);;
+			}
+		}
+	}
 }
