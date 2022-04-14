@@ -27,6 +27,26 @@ public interface StudentsInterface {
 
     /**
      * 
+     * @param getStudentId
+     * @return
+     *     returns boolean
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(name = "getStudentResult", partName = "getStudentResult")
+    @Action(input = "http://studentService/StudentsInterface/studentExistsRequest", output = "http://studentService/StudentsInterface/studentExistsResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/studentExists/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/studentExists/Fault/IOException")
+    })
+    public boolean studentExists(
+        @WebParam(name = "getStudentId", partName = "getStudentId")
+        int getStudentId)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
      * @param printMarkId
      * @param printMarkMc
      * @return
@@ -45,32 +65,6 @@ public interface StudentsInterface {
         int printMarkId,
         @WebParam(name = "printMarkMc", partName = "printMarkMc")
         ModuleCode printMarkMc)
-        throws IOException_Exception, JAXBException_Exception
-    ;
-
-    /**
-     * 
-     * @param mc
-     * @param insertMarkId
-     * @param mark
-     * @return
-     *     returns int
-     * @throws JAXBException_Exception
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
-    @Action(input = "http://studentService/StudentsInterface/insertMarkRequest", output = "http://studentService/StudentsInterface/insertMarkResponse", fault = {
-        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/insertMark/Fault/JAXBException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/insertMark/Fault/IOException")
-    })
-    public int insertMark(
-        @WebParam(name = "insertMarkId", partName = "insertMarkId")
-        int insertMarkId,
-        @WebParam(name = "mc", partName = "mc")
-        ModuleCode mc,
-        @WebParam(name = "mark", partName = "mark")
-        double mark)
         throws IOException_Exception, JAXBException_Exception
     ;
 
@@ -114,6 +108,55 @@ public interface StudentsInterface {
         ModuleCode enrollMc,
         @WebParam(name = "enrollAnnualYear", partName = "enrollAnnualYear")
         String enrollAnnualYear)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
+     * @param addModuleMc
+     * @param addModuleId
+     * @param addModuleYear
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://studentService/StudentsInterface/addModuleRequest", output = "http://studentService/StudentsInterface/addModuleResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/addModule/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/addModule/Fault/IOException")
+    })
+    public void addModule(
+        @WebParam(name = "addModuleId", partName = "addModuleId")
+        int addModuleId,
+        @WebParam(name = "addModuleMc", partName = "addModuleMc")
+        ModuleCode addModuleMc,
+        @WebParam(name = "addModuleYear", partName = "addModuleYear")
+        String addModuleYear)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
+     * @param mc
+     * @param insertMarkId
+     * @param mark
+     * @return
+     *     returns int
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
+    @Action(input = "http://studentService/StudentsInterface/insertMarkRequest", output = "http://studentService/StudentsInterface/insertMarkResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentService/StudentsInterface/insertMark/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentService/StudentsInterface/insertMark/Fault/IOException")
+    })
+    public int insertMark(
+        @WebParam(name = "insertMarkId", partName = "insertMarkId")
+        int insertMarkId,
+        @WebParam(name = "mc", partName = "mc")
+        ModuleCode mc,
+        @WebParam(name = "mark", partName = "mark")
+        double mark)
         throws IOException_Exception, JAXBException_Exception
     ;
 

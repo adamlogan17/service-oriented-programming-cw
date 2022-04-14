@@ -65,7 +65,7 @@ public class CLI {
 	
 	private static void insertMark(ControllerInterface cont, int staffId, ModuleCode mc, double mark, int studId) {
 		if(cont.insertMark(staffId, mc, mark, studId) == -1) System.out.println("Error inserting the mark " + mark + " for the student with ID " + studId
-				+ "on the module with code " + mc + " by the academic staff member with ID" + staffId);
+				+ " on the module with code " + mc + " by the academic staff member with ID" + staffId);
 		else System.out.println("Successful insertion of the mark " + mark + " for the student with ID " + studId + " on the module with code " + mc
 				+ " by the academic staff member with ID " + staffId);
 		System.out.println();

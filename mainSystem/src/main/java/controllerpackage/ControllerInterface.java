@@ -41,6 +41,28 @@ public interface ControllerInterface {
 
     /**
      * 
+     * @param insertMarkStudID
+     * @param insertMarkStaffID
+     * @param insertedMark
+     * @param insertMarkMC
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
+    @Action(input = "http://controllerPackage/ControllerInterface/insertMarkRequest", output = "http://controllerPackage/ControllerInterface/insertMarkResponse")
+    public int insertMark(
+        @WebParam(name = "insertMarkStaffID", partName = "insertMarkStaffID")
+        int insertMarkStaffID,
+        @WebParam(name = "insertMarkMC", partName = "insertMarkMC")
+        ModuleCode insertMarkMC,
+        @WebParam(name = "insertedMark", partName = "insertedMark")
+        double insertedMark,
+        @WebParam(name = "insertMarkStudID", partName = "insertMarkStudID")
+        int insertMarkStudID);
+
+    /**
+     * 
      * @param enrollYear
      * @param enrollStaffID
      * @param enrollStudID
@@ -79,27 +101,5 @@ public interface ControllerInterface {
         ModuleCode printMarkMC,
         @WebParam(name = "printMarkStudID", partName = "printMarkStudID")
         int printMarkStudID);
-
-    /**
-     * 
-     * @param insertMarkStudID
-     * @param insertMarkStaffID
-     * @param insertedMark
-     * @param insertMarkMC
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
-    @Action(input = "http://controllerPackage/ControllerInterface/insertMarkRequest", output = "http://controllerPackage/ControllerInterface/insertMarkResponse")
-    public int insertMark(
-        @WebParam(name = "insertMarkStaffID", partName = "insertMarkStaffID")
-        int insertMarkStaffID,
-        @WebParam(name = "insertMarkMC", partName = "insertMarkMC")
-        ModuleCode insertMarkMC,
-        @WebParam(name = "insertedMark", partName = "insertedMark")
-        double insertedMark,
-        @WebParam(name = "insertMarkStudID", partName = "insertMarkStudID")
-        int insertMarkStudID);
 
 }

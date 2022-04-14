@@ -4,6 +4,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
@@ -16,7 +19,6 @@ import studentservice.StudentsInterface;
 import studentservice.ModuleCode;
 
 @WebService(endpointInterface = "controllerPackage.ControllerInterface")
-
 public class Controller implements ControllerInterface {
 	private StudentsInterface connectStudentService() throws MalformedURLException {
 		URL url = new URL("http://localhost:8080/studentService/?wsdl");
@@ -77,7 +79,6 @@ public class Controller implements ControllerInterface {
 			staffService = connectStaffService();
 			studService = connectStudentService();
 		} catch (MalformedURLException e) {
-			System.out.println("1");
 			e.printStackTrace();
 		}
 		
@@ -86,15 +87,17 @@ public class Controller implements ControllerInterface {
 				return -1;
 			}
 		} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e1) {
-			System.out.println("2");
 			e1.printStackTrace();
 		}
 		
 		try {
-			return studService.enroll(studentID, mc, annualYear);
+			if(studService.studentExists(studentID)) {
+				studService.addModule(studentID, mc, annualYear);
+				return 0;
+			}
+			//return studService.enroll(studentID, mc, annualYear);
 		} catch (IOException_Exception | JAXBException_Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("3");
 			e.printStackTrace();
 		}
 		return -1;

@@ -15,12 +15,10 @@ public class Student {
 		this.id = newID;
 	}
 	
-	public void addMc(ModuleCode mc, String annualYear) {
-		Module newModule = new Module(mc , annualYear);
-		
+	public void addMc(Module newModule) {
 		for (int i = 0; enrolledMcs.length > i; i++) {
 			if(enrolledMcs[i] == null) {
-				enrolledMcs[i] = mc;
+				enrolledMcs[i] = newModule.getMc();
 				enrolledModules[i] = newModule;
 				break;
 			}
