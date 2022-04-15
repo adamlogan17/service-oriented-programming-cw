@@ -43,6 +43,7 @@ public class CLI {
 		assign(cont, 5, staffservice.ModuleCode.CSC_1022, "AY_2021_22");
 	}
 	
+	// Use case 1 - Batch Registration
 	private static void batchRegistration(ControllerInterface cont) {
 		System.out.println("1. Batch registration of end-users\n");
 		
@@ -59,6 +60,7 @@ public class CLI {
 		}
 	}
 	
+	// Use case 2 - Enrolling a student on a module
 	private static void enroll(ControllerInterface cont, int staffId, ModuleCode mc, String annualYear, int studId) {
 		if(cont.enroll(staffId, mc, annualYear, studId) == -1) System.out.println("Error enrolling student with ID " + studId + " by the"
 				+ " academic staff member with ID " + staffId);
@@ -66,7 +68,8 @@ public class CLI {
 				+ annualYear + " by the academic staff member with ID " + staffId);
 		System.out.println();
 	}
-	
+
+	// Use case 3 - Giving a student a mark on a module
 	private static void insertMark(ControllerInterface cont, int staffId, ModuleCode mc, double mark, int studId) {
 		if(cont.insertMark(staffId, mc, mark, studId) == -1) System.out.println("Error inserting the mark " + mark + " for the student with ID " + studId
 				+ " on the module with code " + mc.toString().replaceAll("_", "") + " by the academic staff member with ID " + staffId);
@@ -74,7 +77,8 @@ public class CLI {
 				+ " by the academic staff member with ID " + staffId);
 		System.out.println();
 	}
-	
+
+	// Use case 4 - Reports the mark of a student in a given module
 	private static void printMark(ControllerInterface cont, int staffId, ModuleCode mc, int studId) {
 		String result = cont.printMark(staffId, mc, studId);
 		if(result.equals("")) {
@@ -86,7 +90,8 @@ public class CLI {
 		}
 		System.out.println();
 	}
-	
+
+	// Use case 5 - Assigns a staff member to a module
 	private static void assign(ControllerInterface cont, int staffId, staffservice.ModuleCode mc, String academicYear) {
 		if(cont.assign(staffId, mc, academicYear) == -1) System.out.println("Error assignment of the module " + mc.toString().replaceAll("_", "") + ", " + academicYear + " to the academic staff member with"
 				+ " ID " + staffId);

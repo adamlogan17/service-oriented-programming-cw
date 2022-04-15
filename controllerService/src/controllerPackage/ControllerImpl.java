@@ -19,7 +19,9 @@ import studentservice.StudentsInterface;
 import studentservice.ModuleCode;
 
 @WebService(endpointInterface = "controllerPackage.ControllerInterface")
-public class Controller implements ControllerInterface {
+public class ControllerImpl implements ControllerInterface {
+	
+	// Connects the student service with the controller service
 	private StudentsInterface connectStudentService() throws MalformedURLException {
 		URL url = new URL("http://localhost:8080/studentService/?wsdl");
 		QName qname = new QName("http://studentService/", "StudentsImplService");
@@ -30,6 +32,7 @@ public class Controller implements ControllerInterface {
 		return obj;
 	}
 
+	// Connects the staff service with the controller service
 	private StaffsInterface connectStaffService() throws MalformedURLException {
 		URL url = new URL("http://localhost:8080/staffService/?wsdl");
 		QName qname = new QName("http://staffService/", "StaffsImplService");
@@ -40,6 +43,7 @@ public class Controller implements ControllerInterface {
 		return obj;
 	}
 
+	// Registers an user(Student/Staff) using an ID and a role
 	public void registration(Role roleOfUser, int id) {
 		if (roleOfUser == Role.STUDENT) {
 			StudentsInterface obj = null;
@@ -72,6 +76,7 @@ public class Controller implements ControllerInterface {
 		}
 	}
 
+	// Enrolls a student to a given module. It returns a 0 if it was successful and -1 if it failed
 	public int enroll(int staffID, ModuleCode mc, String annualYear, int studentID) {
 		StaffsInterface staffService = null;
 		StudentsInterface studService = null;
@@ -95,14 +100,13 @@ public class Controller implements ControllerInterface {
 				studService.addModule(studentID, mc, annualYear);
 				return 0;
 			}
-			//return studService.enroll(studentID, mc, annualYear);
 		} catch (IOException_Exception | JAXBException_Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return -1;
 	}
-	
+
+	// Gives a student a mark in a certain module. It returns a 0 if it was successful and -1 if it failed
 	public int insertMark(int staffID, ModuleCode mc, double mark, int studentID) {
 		StaffsInterface staffService = null;
 		StudentsInterface studService = null;
@@ -131,7 +135,8 @@ public class Controller implements ControllerInterface {
 		}
 		return -1;
 	}
-	
+
+	// Returns a string containing a students module code, mark and year
 	public String printMark(int staffID, ModuleCode mc, int studentID) {
 		String result = "";
 		StaffsInterface staffService = null;
@@ -140,7 +145,6 @@ public class Controller implements ControllerInterface {
 			staffService = connectStaffService();
 			studService = connectStudentService();
 		} catch (MalformedURLException e) {
-			System.out.println("1");
 			e.printStackTrace();
 		}
 		
@@ -149,19 +153,17 @@ public class Controller implements ControllerInterface {
 				return result;
 			}
 		} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e1) {
-			System.out.println("2");
 			e1.printStackTrace();
 		}
 		try {
 			result = studService.printMark(studentID, mc);
 		} catch (IOException_Exception | JAXBException_Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("3");
 			e.printStackTrace();
 		}
 		return result;
 	}
 	
+	// Assigns a module to a academic staff member. It returns a 0 if it was successful and -1 if it failed
 	public int assign(int staffID, staffservice.ModuleCode mc, String academicYear) {
 		StaffsInterface staffService = null;
 		try {
