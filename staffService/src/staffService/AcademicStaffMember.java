@@ -15,6 +15,16 @@ public class AcademicStaffMember {
 		this.id = newID;
 	}
 	
+	public void addModule(Module newModule) {
+		for (int i = 0; taughtMcs.length > i; i++) {
+			if(taughtMcs[i] == null) {
+				taughtMcs[i] = newModule.getMc();
+				taughtModules[i] = newModule;
+				break;
+			}
+		}
+	}
+	
 	public void setId(int newId) {
 		this.id = newId;
 	}

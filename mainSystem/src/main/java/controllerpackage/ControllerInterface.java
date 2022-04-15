@@ -8,7 +8,6 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
-import studentservice.ModuleCode;
 
 
 /**
@@ -20,8 +19,9 @@ import studentservice.ModuleCode;
 @WebService(name = "ControllerInterface", targetNamespace = "http://controllerPackage/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    controllerpackage.ObjectFactory.class,
-    studentservice.ObjectFactory.class
+    staffservice.ObjectFactory.class,
+    studentservice.ObjectFactory.class,
+    controllerpackage.ObjectFactory.class
 })
 public interface ControllerInterface {
 
@@ -41,6 +41,25 @@ public interface ControllerInterface {
 
     /**
      * 
+     * @param assignYear
+     * @param assignMc
+     * @param assignStaffID
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "assignResult", partName = "assignResult")
+    @Action(input = "http://controllerPackage/ControllerInterface/assignRequest", output = "http://controllerPackage/ControllerInterface/assignResponse")
+    public int assign(
+        @WebParam(name = "assignStaffID", partName = "assignStaffID")
+        int assignStaffID,
+        @WebParam(name = "assignMc", partName = "assignMc")
+        staffservice.ModuleCode assignMc,
+        @WebParam(name = "assignYear", partName = "assignYear")
+        String assignYear);
+
+    /**
+     * 
      * @param insertMarkStudID
      * @param insertMarkStaffID
      * @param insertedMark
@@ -55,11 +74,30 @@ public interface ControllerInterface {
         @WebParam(name = "insertMarkStaffID", partName = "insertMarkStaffID")
         int insertMarkStaffID,
         @WebParam(name = "insertMarkMC", partName = "insertMarkMC")
-        ModuleCode insertMarkMC,
+        studentservice.ModuleCode insertMarkMC,
         @WebParam(name = "insertedMark", partName = "insertedMark")
         double insertedMark,
         @WebParam(name = "insertMarkStudID", partName = "insertMarkStudID")
         int insertMarkStudID);
+
+    /**
+     * 
+     * @param printMarkStudID
+     * @param printMarkStaffID
+     * @param printMarkMC
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(name = "printMarkResult", partName = "printMarkResult")
+    @Action(input = "http://controllerPackage/ControllerInterface/printMarkRequest", output = "http://controllerPackage/ControllerInterface/printMarkResponse")
+    public String printMark(
+        @WebParam(name = "printMarkStaffID", partName = "printMarkStaffID")
+        int printMarkStaffID,
+        @WebParam(name = "printMarkMC", partName = "printMarkMC")
+        studentservice.ModuleCode printMarkMC,
+        @WebParam(name = "printMarkStudID", partName = "printMarkStudID")
+        int printMarkStudID);
 
     /**
      * 
@@ -77,29 +115,10 @@ public interface ControllerInterface {
         @WebParam(name = "enrollStaffID", partName = "enrollStaffID")
         int enrollStaffID,
         @WebParam(name = "enrollMC", partName = "enrollMC")
-        ModuleCode enrollMC,
+        studentservice.ModuleCode enrollMC,
         @WebParam(name = "enrollYear", partName = "enrollYear")
         String enrollYear,
         @WebParam(name = "enrollStudID", partName = "enrollStudID")
         int enrollStudID);
-
-    /**
-     * 
-     * @param printMarkStudID
-     * @param printMarkStaffID
-     * @param printMarkMC
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(name = "printMarkResult", partName = "printMarkResult")
-    @Action(input = "http://controllerPackage/ControllerInterface/printMarkRequest", output = "http://controllerPackage/ControllerInterface/printMarkResponse")
-    public String printMark(
-        @WebParam(name = "printMarkStaffID", partName = "printMarkStaffID")
-        int printMarkStaffID,
-        @WebParam(name = "printMarkMC", partName = "printMarkMC")
-        ModuleCode printMarkMC,
-        @WebParam(name = "printMarkStudID", partName = "printMarkStudID")
-        int printMarkStudID);
 
 }

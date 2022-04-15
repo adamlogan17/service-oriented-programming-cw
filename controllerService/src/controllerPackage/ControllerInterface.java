@@ -27,4 +27,7 @@ public interface ControllerInterface
 
 	@WebMethod
     public @WebResult(name = "printMarkResult") String printMark(@WebParam(name = "printMarkStaffID") int staffID, @WebParam(name = "printMarkMC") ModuleCode mc, @WebParam(name = "printMarkStudID") int studentID);
+
+	@WebMethod
+	public @WebResult(name = "assignResult") int assign(@WebParam(name = "assignStaffID") int staffID, @WebParam(name = "assignMc") staffservice.ModuleCode mc, @WebParam(name = "assignYear") String academicYear);
 }

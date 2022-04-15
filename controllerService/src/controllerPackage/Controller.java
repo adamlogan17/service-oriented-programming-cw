@@ -161,4 +161,24 @@ public class Controller implements ControllerInterface {
 		}
 		return result;
 	}
+	
+	public int assign(int staffID, staffservice.ModuleCode mc, String academicYear) {
+		StaffsInterface staffService = null;
+		try {
+			staffService = connectStaffService();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			if(staffService.staffExist(staffID) == 0) {
+				staffService.assignModule(staffID, mc, academicYear);
+				return 0;
+			}
+		} catch (staffservice.IOException_Exception | staffservice.JAXBException_Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		return -1;
+	}
 }

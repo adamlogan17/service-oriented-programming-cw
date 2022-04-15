@@ -23,20 +23,24 @@ public class CLI {
 		
 		batchRegistration(cont);
 		
-		System.out.println("2. Enrolling a student on a module\n");
+		System.out.println("\n2. Enrolling a student on a module\n");
 		enroll(cont, 0, ModuleCode.CSC_1022, "AY_2021_22", 1);
 		enroll(cont, 5, ModuleCode.CSC_1022, "AY_2021_22", 7);
 		enroll(cont, 5, ModuleCode.CSC_1022, "AY_2021_22", 1);
 		
-		System.out.println("3. Inserting a new mark\n");
+		System.out.println("\n3. Inserting a new mark\n");
 		insertMark(cont, 0, ModuleCode.CSC_1022, 100, 1);
 		insertMark(cont, 5, ModuleCode.CSC_1023, 100, 1);
 		insertMark(cont, 5, ModuleCode.CSC_1022, 100, 7);
 		insertMark(cont, 5, ModuleCode.CSC_1022, 100, 1);
 		
-		System.out.println("4. Reporting the mark of a student\n");
-		printMark(cont, 1, ModuleCode.CSC_1022, 2);
+		System.out.println("\n4. Reporting the mark of a student\n");
+		printMark(cont, 2, ModuleCode.CSC_1022, 1);
 		printMark(cont, 5, ModuleCode.CSC_1022, 1);
+		
+		System.out.println("\n5. Assigning a module to an academic staff member\n");
+		assign(cont, 2, staffservice.ModuleCode.CSC_1022, "AY_2021_22");
+		assign(cont, 5, staffservice.ModuleCode.CSC_1022, "AY_2021_22");
 	}
 	
 	private static void batchRegistration(ControllerInterface cont) {
@@ -58,15 +62,15 @@ public class CLI {
 	private static void enroll(ControllerInterface cont, int staffId, ModuleCode mc, String annualYear, int studId) {
 		if(cont.enroll(staffId, mc, annualYear, studId) == -1) System.out.println("Error enrolling student with ID " + studId + " by the"
 				+ " academic staff member with ID " + staffId);
-		else System.out.println("Successful enrolment of the student with ID " + studId + " on the module with code " + mc +", "
+		else System.out.println("Successful enrolment of the student with ID " + studId + " on the module with code " + mc.toString().replaceAll("_", "") +", "
 				+ annualYear + " by the academic staff member with ID " + staffId);
 		System.out.println();
 	}
 	
 	private static void insertMark(ControllerInterface cont, int staffId, ModuleCode mc, double mark, int studId) {
 		if(cont.insertMark(staffId, mc, mark, studId) == -1) System.out.println("Error inserting the mark " + mark + " for the student with ID " + studId
-				+ " on the module with code " + mc + " by the academic staff member with ID" + staffId);
-		else System.out.println("Successful insertion of the mark " + mark + " for the student with ID " + studId + " on the module with code " + mc
+				+ " on the module with code " + mc.toString().replaceAll("_", "") + " by the academic staff member with ID " + staffId);
+		else System.out.println("Successful insertion of the mark " + mark + " for the student with ID " + studId + " on the module with code " + mc.toString().replaceAll("_", "")
 				+ " by the academic staff member with ID " + staffId);
 		System.out.println();
 	}
@@ -80,6 +84,14 @@ public class CLI {
 			System.out.println("Reporting the module for the student with ID " + studId + " by the academic staff member with ID "
 					+ staffId + result);
 		}
+		System.out.println();
+	}
+	
+	private static void assign(ControllerInterface cont, int staffId, staffservice.ModuleCode mc, String academicYear) {
+		if(cont.assign(staffId, mc, academicYear) == -1) System.out.println("Error assignment of the module " + mc.toString().replaceAll("_", "") + ", " + academicYear + " to the academic staff member with"
+				+ " ID " + staffId);
+		else System.out.println("Successful assignment of the module " + mc.toString().replaceAll("_", "") + ", " + academicYear + " to the academic staff member"
+				+ " with ID " + staffId);
 		System.out.println();
 	}
 }

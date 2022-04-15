@@ -6,9 +6,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Module {
-	ModuleCode mc;
-	String academicYear;
-	double mark;
+	private ModuleCode mc;
+	private String academicYear;
+	private double mark;
 	
 	public Module() {};
 	

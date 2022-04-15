@@ -27,23 +27,6 @@ public interface StaffsInterface {
 
     /**
      * 
-     * @param addStaffNewStaff
-     * @throws JAXBException_Exception
-     * @throws IOException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://staffService/StaffsInterface/addStaffRequest", output = "http://staffService/StaffsInterface/addStaffResponse", fault = {
-        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/addStaff/Fault/JAXBException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/addStaff/Fault/IOException")
-    })
-    public void addStaff(
-        @WebParam(name = "addStaffNewStaff", partName = "addStaffNewStaff")
-        AcademicStaffMember addStaffNewStaff)
-        throws IOException_Exception, JAXBException_Exception
-    ;
-
-    /**
-     * 
      * @param staffID
      * @return
      *     returns int
@@ -59,6 +42,46 @@ public interface StaffsInterface {
     public int staffExist(
         @WebParam(name = "StaffID", partName = "StaffID")
         int staffID)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
+     * @param assignModuleYear
+     * @param assignModuleStaffID
+     * @param assignModuleMc
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://staffService/StaffsInterface/assignModuleRequest", output = "http://staffService/StaffsInterface/assignModuleResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/assignModule/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/assignModule/Fault/IOException")
+    })
+    public void assignModule(
+        @WebParam(name = "assignModuleStaffID", partName = "assignModuleStaffID")
+        int assignModuleStaffID,
+        @WebParam(name = "assignModuleMc", partName = "assignModuleMc")
+        ModuleCode assignModuleMc,
+        @WebParam(name = "assignModuleYear", partName = "assignModuleYear")
+        String assignModuleYear)
+        throws IOException_Exception, JAXBException_Exception
+    ;
+
+    /**
+     * 
+     * @param addStaffNewStaff
+     * @throws JAXBException_Exception
+     * @throws IOException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://staffService/StaffsInterface/addStaffRequest", output = "http://staffService/StaffsInterface/addStaffResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://staffService/StaffsInterface/addStaff/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://staffService/StaffsInterface/addStaff/Fault/IOException")
+    })
+    public void addStaff(
+        @WebParam(name = "addStaffNewStaff", partName = "addStaffNewStaff")
+        AcademicStaffMember addStaffNewStaff)
         throws IOException_Exception, JAXBException_Exception
     ;
 

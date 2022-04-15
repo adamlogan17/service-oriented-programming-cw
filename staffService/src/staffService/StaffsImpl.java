@@ -18,6 +18,14 @@ public class StaffsImpl implements StaffsInterface {
 	private final static String PATH = "StaffRegistration.xml";
 	
 	public void addStaff(AcademicStaffMember newStaff) throws JAXBException, IOException {
+		AcademicStaffMembers allStaff = readStaff();
+
+		allStaff.add(newStaff);
+		
+		writeStaff(allStaff);
+	}
+	
+	public AcademicStaffMembers readStaff() throws JAXBException, IOException {
 		AcademicStaffMembers allStaff = null;
 		JAXBContext jAXBContext = JAXBContext.newInstance( AcademicStaffMembers.class );
 
@@ -33,14 +41,26 @@ public class StaffsImpl implements StaffsInterface {
 			Unmarshaller unmarshaller = jAXBContext.createUnmarshaller();
 			allStaff = (AcademicStaffMembers) unmarshaller.unmarshal( inputStream );
 		}
-
-		allStaff.add(newStaff);
-
+		
+		return allStaff;
+	}
+	
+	public void writeStaff(AcademicStaffMembers newStaff) throws JAXBException, IOException {
+		JAXBContext jAXBContext = JAXBContext.newInstance( AcademicStaffMembers.class );
 		OutputStream outputStream = new FileOutputStream( PATH );
 		Marshaller marshaller = jAXBContext.createMarshaller();
-		marshaller.marshal( allStaff, outputStream );
+		marshaller.marshal( newStaff, outputStream );
 		
 		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
+	}
+	
+	public void assignModule(int id, ModuleCode mc, String academicYear) throws JAXBException, IOException {
+		AcademicStaffMembers allStaff = readStaff();
+		AcademicStaffMember staff = allStaff.getAStaffMember(id);
+		Module newModule = new Module(mc, academicYear);
+		staff.addModule(newModule);
+		
+		writeStaff(allStaff);
 	}
 	
 	public int staffExist(int id) throws JAXBException, IOException {

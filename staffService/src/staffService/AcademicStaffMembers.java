@@ -25,6 +25,18 @@ public class AcademicStaffMembers {
 		}
 	}
 	
+	public AcademicStaffMember getAStaffMember(int id) {
+		for(AcademicStaffMember staff: allStaff) {
+			if(staff == null) {
+				return null;
+			}
+			if(staff.getId() == id) {
+				return staff;
+			}
+		}
+		return null;
+	}
+	
 	public AcademicStaffMember[] getAllStaff() {
 		return allStaff;
 	}
