@@ -8,14 +8,14 @@ import javax.xml.ws.Service;
 
 import controllerpackage.ControllerInterface;
 import controllerpackage.Role;
-import studentservice.ModuleCode;
+import studentpackage.ModuleCode;
 
 public class CLI {
 
 	public static void main(String[] args) throws MalformedURLException {
 		URL url = new URL( "http://localhost:8080/controllerService/?wsdl" );
 
-		QName qname = new QName( "http://controllerPackage/", "ControllerService" );
+		QName qname = new QName( "http://controllerPackage/", "ControllerImplService" );
 
 		Service service = Service.create( url, qname );
 
@@ -39,8 +39,8 @@ public class CLI {
 		printMark(cont, 5, ModuleCode.CSC_1022, 1);
 		
 		System.out.println("\n5. Assigning a module to an academic staff member\n");
-		assign(cont, 2, staffservice.ModuleCode.CSC_1022, "AY_2021_22");
-		assign(cont, 5, staffservice.ModuleCode.CSC_1022, "AY_2021_22");
+		assign(cont, 2, staffpackage.ModuleCode.CSC_1022, "AY_2021_22");
+		assign(cont, 5, staffpackage.ModuleCode.CSC_1022, "AY_2021_22");
 	}
 	
 	// Use case 1 - Batch Registration
@@ -92,7 +92,7 @@ public class CLI {
 	}
 
 	// Use case 5 - Assigns a staff member to a module
-	private static void assign(ControllerInterface cont, int staffId, staffservice.ModuleCode mc, String academicYear) {
+	private static void assign(ControllerInterface cont, int staffId, staffpackage.ModuleCode mc, String academicYear) {
 		if(cont.assign(staffId, mc, academicYear) == -1) System.out.println("Error assignment of the module " + mc.toString().replaceAll("_", "") + ", " + academicYear + " to the academic staff member with"
 				+ " ID " + staffId);
 		else System.out.println("Successful assignment of the module " + mc.toString().replaceAll("_", "") + ", " + academicYear + " to the academic staff member"

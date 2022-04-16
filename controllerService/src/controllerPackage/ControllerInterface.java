@@ -1,7 +1,5 @@
 package controllerPackage;
 
-import java.util.ArrayList;
-
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -9,7 +7,7 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 
-import studentservice.ModuleCode;
+import studentpackage.ModuleCode;
 
 
 @WebService
@@ -29,5 +27,5 @@ public interface ControllerInterface
     public @WebResult(name = "printMarkResult") String printMark(@WebParam(name = "printMarkStaffID") int staffID, @WebParam(name = "printMarkMC") ModuleCode mc, @WebParam(name = "printMarkStudID") int studentID);
 
 	@WebMethod
-	public @WebResult(name = "assignResult") int assign(@WebParam(name = "assignStaffID") int staffID, @WebParam(name = "assignMc") staffservice.ModuleCode mc, @WebParam(name = "assignYear") String academicYear);
+	public @WebResult(name = "assignResult") int assign(@WebParam(name = "assignStaffID") int staffID, @WebParam(name = "assignMc") staffpackage.ModuleCode mc, @WebParam(name = "assignYear") String academicYear);
 }

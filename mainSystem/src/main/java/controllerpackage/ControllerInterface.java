@@ -19,8 +19,8 @@ import javax.xml.ws.Action;
 @WebService(name = "ControllerInterface", targetNamespace = "http://controllerPackage/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-    staffservice.ObjectFactory.class,
-    studentservice.ObjectFactory.class,
+    staffpackage.ObjectFactory.class,
+    studentpackage.ObjectFactory.class,
     controllerpackage.ObjectFactory.class
 })
 public interface ControllerInterface {
@@ -54,31 +54,9 @@ public interface ControllerInterface {
         @WebParam(name = "assignStaffID", partName = "assignStaffID")
         int assignStaffID,
         @WebParam(name = "assignMc", partName = "assignMc")
-        staffservice.ModuleCode assignMc,
+        staffpackage.ModuleCode assignMc,
         @WebParam(name = "assignYear", partName = "assignYear")
         String assignYear);
-
-    /**
-     * 
-     * @param insertMarkStudID
-     * @param insertMarkStaffID
-     * @param insertedMark
-     * @param insertMarkMC
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
-    @Action(input = "http://controllerPackage/ControllerInterface/insertMarkRequest", output = "http://controllerPackage/ControllerInterface/insertMarkResponse")
-    public int insertMark(
-        @WebParam(name = "insertMarkStaffID", partName = "insertMarkStaffID")
-        int insertMarkStaffID,
-        @WebParam(name = "insertMarkMC", partName = "insertMarkMC")
-        studentservice.ModuleCode insertMarkMC,
-        @WebParam(name = "insertedMark", partName = "insertedMark")
-        double insertedMark,
-        @WebParam(name = "insertMarkStudID", partName = "insertMarkStudID")
-        int insertMarkStudID);
 
     /**
      * 
@@ -95,7 +73,7 @@ public interface ControllerInterface {
         @WebParam(name = "printMarkStaffID", partName = "printMarkStaffID")
         int printMarkStaffID,
         @WebParam(name = "printMarkMC", partName = "printMarkMC")
-        studentservice.ModuleCode printMarkMC,
+        studentpackage.ModuleCode printMarkMC,
         @WebParam(name = "printMarkStudID", partName = "printMarkStudID")
         int printMarkStudID);
 
@@ -115,10 +93,32 @@ public interface ControllerInterface {
         @WebParam(name = "enrollStaffID", partName = "enrollStaffID")
         int enrollStaffID,
         @WebParam(name = "enrollMC", partName = "enrollMC")
-        studentservice.ModuleCode enrollMC,
+        studentpackage.ModuleCode enrollMC,
         @WebParam(name = "enrollYear", partName = "enrollYear")
         String enrollYear,
         @WebParam(name = "enrollStudID", partName = "enrollStudID")
         int enrollStudID);
+
+    /**
+     * 
+     * @param insertMarkStudID
+     * @param insertMarkStaffID
+     * @param insertedMark
+     * @param insertMarkMC
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "insertMarkResult", partName = "insertMarkResult")
+    @Action(input = "http://controllerPackage/ControllerInterface/insertMarkRequest", output = "http://controllerPackage/ControllerInterface/insertMarkResponse")
+    public int insertMark(
+        @WebParam(name = "insertMarkStaffID", partName = "insertMarkStaffID")
+        int insertMarkStaffID,
+        @WebParam(name = "insertMarkMC", partName = "insertMarkMC")
+        studentpackage.ModuleCode insertMarkMC,
+        @WebParam(name = "insertedMark", partName = "insertedMark")
+        double insertedMark,
+        @WebParam(name = "insertMarkStudID", partName = "insertMarkStudID")
+        int insertMarkStudID);
 
 }

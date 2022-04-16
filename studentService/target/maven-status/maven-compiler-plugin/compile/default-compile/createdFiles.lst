@@ -1,7 +1,7 @@
-studentService\Students.class
-studentService\testing.class
-studentService\StudentsInterface.class
-studentService\ModuleCode.class
-studentService\Module.class
-studentService\Student.class
-studentService\StudentsImpl.class
+studentPackage\ModuleCode.class
+studentPackage\Students.class
+studentPackage\StudentsInterface.class
+studentPackage\Student.class
+studentPackage\StudentsImpl.class
+studentPackage\testing.class
+studentPackage\Module.class
