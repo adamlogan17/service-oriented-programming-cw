@@ -1,9 +1,5 @@
 package studentPackage;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;

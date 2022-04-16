@@ -51,8 +51,6 @@ public class StaffsImpl implements StaffsInterface {
 		OutputStream outputStream = new FileOutputStream( PATH );
 		Marshaller marshaller = jAXBContext.createMarshaller();
 		marshaller.marshal( newStaff, outputStream );
-		
-		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
 	}
 	
 	public int assignModule(int id, StaffModuleCode mc, String academicYear) throws JAXBException, IOException {

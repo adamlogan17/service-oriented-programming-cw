@@ -15,8 +15,6 @@ public class AcademicStaffMembers {
 	}
 	
 	public void add(AcademicStaffMember newStaff) {
-		// need to add check to prevent it from going above 100
-		System.out.println("id in add staff = " + newStaff.getId());
 		for (int i = 0; allStaff.length > i; i++) {
 			if(allStaff[i] == null) {
 				allStaff[i] = newStaff;

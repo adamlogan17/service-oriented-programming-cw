@@ -14,11 +14,10 @@ public class StudentModule {
 	
 	public StudentModule(StudentModuleCode mcForModule, String yearTaught) {
 		this.mc = mcForModule;
-		this.academicYear = yearTaught; // need to do regex check here
+		this.academicYear = yearTaught;
 	}
 	
 	public void addMark(double newMark) {
-		// need to do check for 0 to 100 here
 		mark = newMark;
 	}
 	

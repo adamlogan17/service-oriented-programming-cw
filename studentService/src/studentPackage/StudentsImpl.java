@@ -1,7 +1,6 @@
 package studentPackage;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,8 +51,6 @@ public class StudentsImpl implements StudentsInterface {
 		OutputStream outputStream = new FileOutputStream( PATH );
 		Marshaller marshaller = jAXBContext.createMarshaller();
 		marshaller.marshal( newStudents, outputStream );
-		
-		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
 	}
 	
 	public boolean studentExists(int id) throws JAXBException, IOException {

@@ -110,7 +110,6 @@ public class Controller {
 			staffService = connectStaffService();
 			studService = connectStudentService();
 		} catch (MalformedURLException e) {
-			System.out.println("1");
 			e.printStackTrace();
 		}
 
@@ -119,7 +118,6 @@ public class Controller {
 				return -1;
 			}
 		} catch (staffpackage.IOException_Exception | staffpackage.JAXBException_Exception e1) {
-			System.out.println("2");
 			e1.printStackTrace();
 		}
 		try {
@@ -127,8 +125,6 @@ public class Controller {
 				return studService.insertMark(studentID, mc, mark);
 			}
 		} catch (IOException_Exception | JAXBException_Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("3");
 			e.printStackTrace();
 		}
 		return -1;
