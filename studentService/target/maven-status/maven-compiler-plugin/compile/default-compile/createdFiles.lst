@@ -1,7 +1,7 @@
-studentPackage\ModuleCode.class
+studentPackage\StudentModule.class
 studentPackage\Students.class
 studentPackage\StudentsInterface.class
 studentPackage\Student.class
 studentPackage\StudentsImpl.class
 studentPackage\testing.class
-studentPackage\Module.class
+studentPackage\StudentModuleCode.class

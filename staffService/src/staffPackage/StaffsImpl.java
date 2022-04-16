@@ -55,10 +55,10 @@ public class StaffsImpl implements StaffsInterface {
 		System.out.println( "The objects serialized in this file:" + new java.io.File( PATH ).getAbsolutePath() );
 	}
 	
-	public int assignModule(int id, ModuleCode mc, String academicYear) throws JAXBException, IOException {
+	public int assignModule(int id, StaffModuleCode mc, String academicYear) throws JAXBException, IOException {
 		AcademicStaffMembers allStaff = readStaff();
 		AcademicStaffMember staff = allStaff.getAStaffMember(id);
-		Module newModule = new Module(mc, academicYear);
+		StaffModule newModule = new StaffModule(mc, academicYear);
 		if(!staff.ifMcExists(mc)) {
 			staff.addModule(newModule);
 			writeStaff(allStaff);

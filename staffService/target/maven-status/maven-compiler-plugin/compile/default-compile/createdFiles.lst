@@ -1,7 +1,7 @@
 staffPackage\StaffsInterface.class
-staffPackage\Module.class
+staffPackage\StaffModuleCode.class
 staffPackage\testingStaff.class
-staffPackage\ModuleCode.class
+staffPackage\StaffModule.class
 staffPackage\AcademicStaffMember.class
 staffPackage\AcademicStaffMembers.class
 staffPackage\StaffsImpl.class

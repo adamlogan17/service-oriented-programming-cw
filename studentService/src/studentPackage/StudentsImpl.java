@@ -66,10 +66,10 @@ public class StudentsImpl implements StudentsInterface {
 		return false;
 	}
 	
-	public int addModule(int id, ModuleCode mc, String annualYear) throws JAXBException, IOException {
+	public int addModule(int id, StudentModuleCode mc, String academicYear) throws JAXBException, IOException {
 		Students allStudents = readStudents();
 		Student newStudent = allStudents.getAStudent(id);
-		Module newModule = new Module(mc , annualYear);
+		StudentModule newModule = new StudentModule(mc , academicYear);
 		if(!newStudent.ifMcExists(mc)) {
 			newStudent.addMc(newModule);
 			writeStudents(allStudents);
@@ -78,7 +78,7 @@ public class StudentsImpl implements StudentsInterface {
 		return -1;
 	}
 	
-	public int insertMark(int id, ModuleCode mc, double mark) throws JAXBException, IOException {
+	public int insertMark(int id, StudentModuleCode mc, double mark) throws JAXBException, IOException {
 		Students allStudents = readStudents();
 		Student stud = allStudents.getAStudent(id);
 		if(stud.ifMcExists(mc)) {
@@ -89,7 +89,7 @@ public class StudentsImpl implements StudentsInterface {
 		return -1;
 	}
 	
-	public String printMark(int id, ModuleCode mc) throws JAXBException, IOException {
+	public String printMark(int id, StudentModuleCode mc) throws JAXBException, IOException {
 		String result = "";
 		Students allStudents = readStudents();
 		Student stud = allStudents.getAStudent(id);

@@ -6,12 +6,11 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import staffpackage.AcademicStaffMember;
+import staffpackage.StaffModuleCode;
 import staffpackage.StaffsInterface;
 import studentpackage.IOException_Exception;
 import studentpackage.JAXBException_Exception;
-import studentpackage.ModuleCode;
-import studentpackage.Student;
+import studentpackage.StudentModuleCode;
 import studentpackage.StudentsInterface;
 
 public class Controller {
@@ -74,7 +73,7 @@ public class Controller {
 	 * @param studentID
 	 * @return - It returns a 0 if it was successful and -1 if it failed
 	 */
-	public int enroll(int staffID, ModuleCode mc, String annualYear, int studentID) {
+	public int enroll(int staffID, StudentModuleCode mc, String academicYear, int studentID) {
 		StaffsInterface staffService = null;
 		StudentsInterface studService = null;
 		try {
@@ -94,7 +93,7 @@ public class Controller {
 
 		try {
 			if (studService.studentExists(studentID)) {
-				return studService.addModule(studentID, mc, annualYear);
+				return studService.addModule(studentID, mc, academicYear);
 			}
 		} catch (IOException_Exception | JAXBException_Exception e) {
 			e.printStackTrace();
@@ -104,7 +103,7 @@ public class Controller {
 
 	// Gives a student a mark in a certain module. It returns a 0 if it was
 	// successful and -1 if it failed
-	public int insertMark(int staffID, ModuleCode mc, double mark, int studentID) {
+	public int insertMark(int staffID, StudentModuleCode mc, double mark, int studentID) {
 		StaffsInterface staffService = null;
 		StudentsInterface studService = null;
 		try {
@@ -136,7 +135,7 @@ public class Controller {
 	}
 
 	// Returns a string containing a students module code, mark and year
-	public String printMark(int staffID, ModuleCode mc, int studentID) {
+	public String printMark(int staffID, StudentModuleCode mc, int studentID) {
 		String result = "";
 		StaffsInterface staffService = null;
 		StudentsInterface studService = null;
@@ -164,7 +163,7 @@ public class Controller {
 
 	// Assigns a module to a academic staff member. It returns a 0 if it was
 	// successful and -1 if it failed
-	public int assign(int staffID, staffpackage.ModuleCode mc, String academicYear) {
+	public int assign(int staffID, StaffModuleCode mc, String academicYear) {
 		StaffsInterface staffService = null;
 		try {
 			staffService = connectStaffService();

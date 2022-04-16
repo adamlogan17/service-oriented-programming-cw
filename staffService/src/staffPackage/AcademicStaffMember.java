@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AcademicStaffMember {
 	private int id;
-	private ModuleCode[] taughtMcs = new ModuleCode[2];
-	private Module[] taughtModules = new Module[2];
+	private StaffModuleCode[] taughtMcs = new StaffModuleCode[2];
+	private StaffModule[] taughtModules = new StaffModule[2];
 	
 	public AcademicStaffMember() {}
 	
@@ -15,8 +15,8 @@ public class AcademicStaffMember {
 		this.id = newID;
 	}
 	
-	public boolean ifMcExists(ModuleCode mc) {
-		for(ModuleCode enrolledMc: taughtMcs) {
+	public boolean ifMcExists(StaffModuleCode mc) {
+		for(StaffModuleCode enrolledMc: taughtMcs) {
 			if(enrolledMc == mc) {
 				return true;
 			}
@@ -24,7 +24,7 @@ public class AcademicStaffMember {
 		return false;
 	}
 	
-	public void addModule(Module newModule) {
+	public void addModule(StaffModule newModule) {
 		for (int i = 0; taughtMcs.length > i; i++) {
 			if(taughtMcs[i] == null) {
 				taughtMcs[i] = newModule.getMc();

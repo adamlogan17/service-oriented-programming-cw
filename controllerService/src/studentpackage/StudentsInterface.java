@@ -45,7 +45,7 @@ public interface StudentsInterface {
         @WebParam(name = "addModuleId", partName = "addModuleId")
         int addModuleId,
         @WebParam(name = "addModuleMc", partName = "addModuleMc")
-        ModuleCode addModuleMc,
+        StudentModuleCode addModuleMc,
         @WebParam(name = "addModuleYear", partName = "addModuleYear")
         String addModuleYear)
         throws IOException_Exception, JAXBException_Exception
@@ -53,18 +53,21 @@ public interface StudentsInterface {
 
     /**
      * 
-     * @param addStudentId
+     * @param getStudentId
+     * @return
+     *     returns boolean
      * @throws JAXBException_Exception
      * @throws IOException_Exception
      */
     @WebMethod
-    @Action(input = "http://studentPackage/StudentsInterface/addStudentRequest", output = "http://studentPackage/StudentsInterface/addStudentResponse", fault = {
-        @FaultAction(className = JAXBException_Exception.class, value = "http://studentPackage/StudentsInterface/addStudent/Fault/JAXBException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://studentPackage/StudentsInterface/addStudent/Fault/IOException")
+    @WebResult(name = "getStudentResult", partName = "getStudentResult")
+    @Action(input = "http://studentPackage/StudentsInterface/studentExistsRequest", output = "http://studentPackage/StudentsInterface/studentExistsResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentPackage/StudentsInterface/studentExists/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentPackage/StudentsInterface/studentExists/Fault/IOException")
     })
-    public void addStudent(
-        @WebParam(name = "addStudentId", partName = "addStudentId")
-        int addStudentId)
+    public boolean studentExists(
+        @WebParam(name = "getStudentId", partName = "getStudentId")
+        int getStudentId)
         throws IOException_Exception, JAXBException_Exception
     ;
 
@@ -88,7 +91,7 @@ public interface StudentsInterface {
         @WebParam(name = "insertMarkId", partName = "insertMarkId")
         int insertMarkId,
         @WebParam(name = "mc", partName = "mc")
-        ModuleCode mc,
+        StudentModuleCode mc,
         @WebParam(name = "mark", partName = "mark")
         double mark)
         throws IOException_Exception, JAXBException_Exception
@@ -113,27 +116,24 @@ public interface StudentsInterface {
         @WebParam(name = "printMarkId", partName = "printMarkId")
         int printMarkId,
         @WebParam(name = "printMarkMc", partName = "printMarkMc")
-        ModuleCode printMarkMc)
+        StudentModuleCode printMarkMc)
         throws IOException_Exception, JAXBException_Exception
     ;
 
     /**
      * 
-     * @param getStudentId
-     * @return
-     *     returns boolean
+     * @param addStudentId
      * @throws JAXBException_Exception
      * @throws IOException_Exception
      */
     @WebMethod
-    @WebResult(name = "getStudentResult", partName = "getStudentResult")
-    @Action(input = "http://studentPackage/StudentsInterface/studentExistsRequest", output = "http://studentPackage/StudentsInterface/studentExistsResponse", fault = {
-        @FaultAction(className = JAXBException_Exception.class, value = "http://studentPackage/StudentsInterface/studentExists/Fault/JAXBException"),
-        @FaultAction(className = IOException_Exception.class, value = "http://studentPackage/StudentsInterface/studentExists/Fault/IOException")
+    @Action(input = "http://studentPackage/StudentsInterface/addStudentRequest", output = "http://studentPackage/StudentsInterface/addStudentResponse", fault = {
+        @FaultAction(className = JAXBException_Exception.class, value = "http://studentPackage/StudentsInterface/addStudent/Fault/JAXBException"),
+        @FaultAction(className = IOException_Exception.class, value = "http://studentPackage/StudentsInterface/addStudent/Fault/IOException")
     })
-    public boolean studentExists(
-        @WebParam(name = "getStudentId", partName = "getStudentId")
-        int getStudentId)
+    public void addStudent(
+        @WebParam(name = "addStudentId", partName = "addStudentId")
+        int addStudentId)
         throws IOException_Exception, JAXBException_Exception
     ;
 

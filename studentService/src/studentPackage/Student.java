@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Student {
 	private int id;
-	private ModuleCode[] enrolledMcs = new ModuleCode[20];
-	private Module[] enrolledModules = new Module[20];
+	private StudentModuleCode[] enrolledMcs = new StudentModuleCode[20];
+	private StudentModule[] enrolledModules = new StudentModule[20];
 	
 	public Student() {}
 	
@@ -15,7 +15,7 @@ public class Student {
 		this.id = newID;
 	}
 	
-	public void addMc(Module newModule) {
+	public void addMc(StudentModule newModule) {
 		for (int i = 0; enrolledMcs.length > i; i++) {
 			if(enrolledMcs[i] == null) {
 				enrolledMcs[i] = newModule.getMc();
@@ -25,8 +25,8 @@ public class Student {
 		}
 	}
 	
-	public boolean ifMcExists(ModuleCode mc) {
-		for(ModuleCode enrolledMc: enrolledMcs) {
+	public boolean ifMcExists(StudentModuleCode mc) {
+		for(StudentModuleCode enrolledMc: enrolledMcs) {
 			if(enrolledMc == mc) {
 				return true;
 			}
@@ -42,7 +42,7 @@ public class Student {
 		return id;
 	}
 	
-	public void addMark(ModuleCode mc, double mark) {
+	public void addMark(StudentModuleCode mc, double mark) {
 		for (int i = 0; enrolledModules.length > i; i++) {
 			if(enrolledModules[i] != null) {
 				if (enrolledModules[i].getMc() == mc) enrolledModules[i].addMark(mark);
@@ -50,7 +50,7 @@ public class Student {
 		}
 	}
 	
-	public String getModuleDetails(ModuleCode mc) {
+	public String getModuleDetails(StudentModuleCode mc) {
 		String result = "";
 		for (int i = 0; enrolledModules.length > i; i++) {
 			if(enrolledModules[i] != null) {
