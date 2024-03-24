@@ -1,0 +1,31 @@
+
+Please find below my feedback on the implementation of your service-oriented system.
+
+1. Platforms, technologies, tools, and libraries used for developing your system (weight = 0.1):
+	The services you uploaded use all the requested (versions of) the platforms, technologies, tools, and libraries.
+	In total, the 100.0% of the technological requirements are met.
+
+2. Developed services (weight = 0.4):
+	The percentage of the deployable services of your project that are further properly implemented = 73.33/100.0
+	The percentage of the five use-cases provided by the project description that are correctly executed in your services = 100.0/100.0
+	Details on point 2:
+		Your services should have included classes that are declared as protected, along with their functions (without using the 'public' modifier).
+		The only classes that should use the 'public' modifier are the Java interface and the implementation class of the interface (along with enumeration types that we do not need to annotate with JAXB annotations).
+		The module of academic staff members should not include a mark field because according the assignment specification the modules of academic staff members do not include marks.
+	In total, the 73.33% (= 73.33 * 100.0 / 100) of your services and use-cases are deployable, properly implemented, and correctly executed.
+
+3. JAXB serialization (weight = 0.2):
+	The percentage of the serialization files that the services of your project generate and the serialization technique has been implemented = 100.0/100.0
+	The percentage of the serialization files that have the correct content (i.e., the data stored inside the XML files) = 87.5/100.0
+	Details on point 3:
+		Your XML file for academic staff members should not include a tag for marks.
+		Given that a field for marks has been included in the module class for academic staff members, a tag for marks will appear in the serialization file for academic staff members.
+	In total, the 87.5% (= 100.0 * 87.5 / 100) of the serialization files are generated and have correct content.
+
+4. Service clients (weight = 0.3):
+	The percentage of the clients to the services of your project that have been defined = 100.0/100.0
+	The percentage of the test cases requested by the project description and are correctly executed = 100.0/100.0
+	In total, the 100.0% (= 100.0 * 100.0 / 100) of the service clients and test cases are defined and correctly executed.
+
+
+Your provisional mark for the second/implementation part of the coursework is 87.0 out of 100 points.
